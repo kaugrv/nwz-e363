@@ -1,0 +1,182 @@
+body {
+	text-rendering: geometricPrecision;
+	font-family: 'Inter', sans-serif;
+	font-weight: lighter;
+	font-size: 10px;
+	letter-spacing: 1px;
+
+}
+
+@font-face {
+	font-family: Rodin;
+	src: url("../fonts/Rodin.otf") format("opentype");
+}
+
+.mp4-player {
+	background-image: url('../images/mp4.png');
+	width: 191px;
+	height: 366px;
+	position: relative;
+	top: 20px;
+	left: 500px;
+}
+
+
+.mp4-screen {
+	width: 136px;
+	height: 179px;
+	background-color: black;
+	position: relative;
+	top: 34px;
+	left: 28px;
+	color: white;
+	background: linear-gradient(black, black, black, #140756);
+	border: solid black 1px;
+}
+
+.header, .footer {
+	position: absolute;
+
+	width: 136px;
+	min-height: 16px;
+	display: flex;
+	flex-direction: row;
+	vertical-align: middle;
+	align-items: center;
+}
+
+.header {
+	top: 0;
+	text-align: center;
+	justify-content: center;
+	background: linear-gradient( #282828,#858585);
+}
+
+.footer {
+	bottom: 0;
+	justify-content: space-between;
+	background: linear-gradient(#858585, #282828);
+
+}
+
+.menu {
+	height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.menu-title {
+	margin-bottom: 25px;
+}
+
+.menu-icons img {
+	width: 25px;
+	height: 25px;
+	margin: 9px;
+}
+
+.hover-icon {
+	scale: 1.4;
+	animation: clignotement 1s infinite;
+
+}
+
+@keyframes clignotement {
+	0% {
+		filter: drop-shadow(0 0 2px orange);
+	}
+	50% {
+		filter: none;
+	}
+	100% {
+		filter: drop-shadow(0 0 2px orange);
+	}
+  }
+
+.menu-icons {
+	position: absolute;
+	top: 16px;
+	display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+.button,
+.arrow {
+	cursor: pointer;
+	z-index: 2;
+	position: absolute;
+	/* background-color: aqua; */
+	filter: blur(10px);
+}
+
+.button {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+
+}
+
+.arrow {
+	position: absolute;
+}
+
+.button:hover,
+.arrow:hover {
+	background-color: rgba(240, 248, 255, 0.397);
+}
+
+.button:active,
+.arrow:active {
+	background-color: rgba(199, 199, 199, 0.04);
+}
+
+
+.back {
+	bottom: 76px;
+	left: 28px;
+}
+
+.option {
+	bottom: 76px;
+	right: 28px;
+}
+
+.play {
+	width: 48px;
+	height: 48px;
+	left: 73px;
+	bottom: 38px;
+}
+
+.up {
+	width: 56px;
+	height: 30px;
+	left: 69px;
+	bottom: 85px;
+}
+
+.down {
+	width: 56px;
+	height: 30px;
+	left: 69px;
+	bottom: 10px;
+}
+
+.left {
+	height: 56px;
+	width: 30px;
+	left: 40px;
+	bottom: 15px;
+}
+
+.right {
+	height: 56px;
+	width: 30px;
+	right: 40px;
+	bottom: 15px;
+}
