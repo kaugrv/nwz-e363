@@ -1,6 +1,6 @@
 body {
 	text-rendering: geometricPrecision;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Florid', sans-serif;
 	font-weight: lighter;
 	font-size: 10px;
 	letter-spacing: 1px;
@@ -10,6 +10,11 @@ body {
 @font-face {
 	font-family: Rodin;
 	src: url("../fonts/Rodin.otf") format("opentype");
+}
+
+@font-face {
+	font-family: Florid;
+	src: url("../fonts/Florid.ttf") format("truetype");
 }
 
 .mp4-player {
@@ -59,6 +64,11 @@ body {
 
 }
 
+.battery {
+	height: 12px;
+	filter: invert();
+}
+
 .menu {
 	height: 100%;
     display: flex;
@@ -75,23 +85,29 @@ body {
 	width: 25px;
 	height: 25px;
 	margin: 9px;
+	filter: invert();
+	transition: ease-in-out 0.1s;
+
 }
 
 .hover-icon {
 	scale: 1.4;
 	animation: clignotement 1s infinite;
+	transition: ease-in-out 0.1s;
+
 
 }
 
 @keyframes clignotement {
+	
 	0% {
-		filter: drop-shadow(0 0 2px orange);
+		filter: invert() drop-shadow(0 0 2px orange);
 	}
 	50% {
-		filter: none;
+		filter: invert();
 	}
 	100% {
-		filter: drop-shadow(0 0 2px orange);
+		filter: invert() drop-shadow(0 0 2px orange);
 	}
   }
 

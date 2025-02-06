@@ -10,6 +10,17 @@ document.querySelector(".down").addEventListener("click", (e) => menuNavigate("d
 document.querySelector(".right").addEventListener("click", (e) => menuNavigate("right"));
 document.querySelector(".left").addEventListener("click", (e) => menuNavigate("left"));
 
+document.addEventListener("keydown", function(event) {
+    if (event.key == "ArrowLeft"){
+        menuNavigate("left");
+    } else if (event.key == "ArrowUp"){
+        menuNavigate("up");
+    } else if (event.key == "ArrowRight"){
+        menuNavigate("right");
+    } else if (event.key == "ArrowDown"){
+        menuNavigate("down");
+    }})
+
 
 function menuNavigate(direction) {
     document.getElementById("icon-"+menuIcon).className = "";
