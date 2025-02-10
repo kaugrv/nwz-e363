@@ -1,21 +1,17 @@
 body {
-	text-rendering: geometricPrecision;
-	font-family: 'Florid', sans-serif;
+	font-smooth: never;
+	font-family: 'SST', sans-serif;
 	font-weight: lighter;
 	font-size: 10px;
-	letter-spacing: 1px;
 
 }
 
 @font-face {
-	font-family: Rodin;
-	src: url("../fonts/Rodin.otf") format("opentype");
+	font-family: SST;
+	src: url("../fonts/SST.TTF");
 }
 
-@font-face {
-	font-family: Florid;
-	src: url("../fonts/Florid.ttf") format("truetype");
-}
+
 
 .mp4-player {
 	background-image: url('../images/mp4.png');
@@ -23,7 +19,7 @@ body {
 	height: 366px;
 	position: relative;
 	top: 20px;
-	left: 500px;
+	left: 300px;
 }
 
 
@@ -41,13 +37,10 @@ body {
 
 .header, .footer {
 	position: absolute;
-
 	width: 136px;
 	min-height: 16px;
 	display: flex;
 	flex-direction: row;
-	vertical-align: middle;
-	align-items: center;
 }
 
 .header {
@@ -61,7 +54,6 @@ body {
 	bottom: 0;
 	justify-content: space-between;
 	background: linear-gradient(#858585, #282828);
-
 }
 
 .battery {
@@ -195,4 +187,78 @@ body {
 	width: 30px;
 	right: 40px;
 	bottom: 15px;
+}
+
+.musique {
+	position: absolute;
+	top: 18px;
+	width: 100%;
+	background-color: black;
+	height: 145px;
+	display: none;
+
+}
+
+.musique-li {
+	margin: 0px 3px;
+	padding: 1px;
+	border: solid 1px rgba(255, 166, 0, 0) ;
+
+}
+
+.hover-musique-li {
+	border: solid 1px orange ;
+	color: black;
+	background: linear-gradient(white, yellow);
+}
+
+.music-player {
+	position: absolute;
+	top: 18px;
+	width: 100%;
+	background-color: black;
+	height: 145px;
+}
+
+.music-title img {
+	width: 15px;
+	vertical-align: middle;
+}
+
+.music-cover {
+	width: 50px;
+	margin: 5px;
+}
+
+
+.music-infos {
+	border-top: solid  0.1px #858585;
+	margin: 3px;
+}
+
+.music-count {
+	position: absolute;
+	right: 10px;
+	top: 60px;
+}
+
+
+.music-progress-bar-bg, 
+.music-progress-bar {
+	position: absolute;
+	bottom: 17px;
+	height: 4px;
+	bottom: 17px;
+	height: 4px;
+
+}
+
+.music-progress-bar-bg {
+	background: linear-gradient( #282828,#858585);
+	width: 100%;
+}
+
+.music-progress-bar {
+	background: linear-gradient( #86A0FF,#4576FF, #9FD3FF );
+	width: 40%;
 }
