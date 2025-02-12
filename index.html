@@ -1,71 +1,77 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Wendy Gervais" />
+    <meta name="language" content="fr" />
+    <title>my mp4 player</title>
+    <!-- <link rel="icon" type="image/png" href="favicon.png"> -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="author" content="Wendy Gervais">
-	<meta name="language" content="fr">
-	<title>my mp4 player</title>
-	<!-- <link rel="icon" type="image/png" href="favicon.png"> -->
-	<link rel="stylesheet" href="css/style.css">
+  <body>
+    <div class="mp4-player">
+      <div class="mp4-screen">
+        <div class="header">Accueil</div>
+        <div class="footer">
+          <span class="footer-state">⏸</span
+          ><span class="footer-title"> The Spiral</span
+          ><span class="footer-battery"
+            ><img src="images/battery.png" alt="" class="battery"
+          /></span>
+        </div>
+        <div class="menu">
+          <div class="menu-icons">
+            <img src="images/1.png" id="icon-0" />
+            <img src="images/2.png" id="icon-1" />
+            <img src="images/3.png" id="icon-2" />
+            <img src="images/4.png" id="icon-3" />
+            <img src="images/5.png" id="icon-4" class="hover-icon" />
+            <img src="images/6.png" id="icon-5" />
+            <img src="images/7.png" id="icon-6" />
+            <img src="images/8.png" id="icon-7" />
+            <img src="images/9.png" id="icon-8" />
+          </div>
+          <div class="menu-title">Musique</div>
+        </div>
+        <div class="musique">
+          <div class="musique-li hover-musique-li" id="musique-li-0">
+            Toutes les chansons
+          </div>
+          <div class="musique-li" id="musique-li-1">Album</div>
+          <div class="musique-li" id="musique-li-2">Artiste</div>
+          <div class="musique-li" id="musique-li-3">Genre</div>
+          <div class="musique-li" id="musique-li-4">Année de sortie</div>
+          <div class="musique-li" id="musique-li-5">Dossier</div>
+        </div>
+        <div class="music-player">
+          <div class="music-title">
+            <img src="images/music.png" alt="" class="" />Titre
+          </div>
+          <img src="musique/X1000.jpg" alt="" class="music-cover" />
+          <div class="music-count">1/68</div>
+          <div class="music-infos">
+            <div class="music-infos-li">Artiste</div>
+            <div class="music-infos-li">Album imagine ici c'est...</div>
+            <div class="music-infos-li">Genre</div>
+            <div class="music-infos-li">1970</div>
+          </div>
+        </div>
+        <div class="music-progress-bar-bg"></div>
+        <div class="music-progress-bar"></div>
+      </div>
 
+      <div class="button back"></div>
+      <div class="button option"></div>
+      <div class="button play"></div>
+      <div class="arrow up"></div>
+      <div class="arrow down"></div>
+      <div class="arrow left"></div>
+      <div class="arrow right"></div>
+    </div>
 
-</head>
-
-<body>
-	<div class="mp4-player">
-		<div class="mp4-screen">
-			<div class="header">Accueil</div>
-			<div class="footer"><span class="footer-state">⏸</span><span class="footer-title"> The Spiral</span><span
-					class="footer-battery"><img src="images/battery.png" alt="" class="battery"></span></div>
-			<div class="menu">
-				<div class="menu-icons">
-					<img src="images/1.png" id="icon-0">
-					<img src="images/2.png" id="icon-1">
-					<img src="images/3.png" id="icon-2">
-					<img src="images/4.png" id="icon-3">
-					<img src="images/5.png" id="icon-4" class="hover-icon">
-					<img src="images/6.png" id="icon-5">
-					<img src="images/7.png" id="icon-6">
-					<img src="images/8.png" id="icon-7">
-					<img src="images/9.png" id="icon-8">
-				</div>
-				<div class="menu-title">Musique</div>
-			</div>
-			<div class="musique">
-				<div class="musique-li hover-musique-li" id="musique-li-0">Toutes les chansons</div>
-				<div class="musique-li" id="musique-li-1">Album</div>
-				<div class="musique-li" id="musique-li-2">Artiste</div>
-				<div class="musique-li" id="musique-li-3">Genre</div>
-				<div class="musique-li" id="musique-li-4">Année de sortie</div>
-				<div class="musique-li" id="musique-li-5">Dossier</div>
-			</div>
-			<div class="music-player">
-				<div class="music-title"><img src="images/music.png" alt="" class="">Titre</div>
-				<img src="musique/X1000.jpg" alt="" class="music-cover">
-				<div class="music-count">1/68</div>
-				<div class="music-infos">
-					<div class="music-infos-li">Artiste</div>
-					<div class="music-infos-li">Album imagine ici c'est...</div>
-					<div class="music-infos-li">Genre</div>
-					<div class="music-infos-li">1970</div>
-				</div>
-</div>				<div class="music-progress-bar-bg">
-			</div><div class="music-progress-bar"></div>
-		</div>
-
-		<div class="button back"></div>
-		<div class="button option"></div>
-		<div class="button play"></div>
-		<div class="arrow up"></div>
-		<div class="arrow down"></div>
-		<div class="arrow left"></div>
-		<div class="arrow right"></div>
-	</div>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-	<script src="js/script.js"></script>
-</body>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
 </html>

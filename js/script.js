@@ -112,9 +112,10 @@ function back() {
 function hideEverything() {
     document.querySelector(".musique").style.display = "none";
     document.querySelector(".menu").style.display = "none";
+    document.querySelector(".music-player").style.display = "none";
 }
 
-hideEverything();
+//hideEverything();
 
 
 

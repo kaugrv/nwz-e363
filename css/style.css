@@ -218,6 +218,7 @@ body {
 	width: 100%;
 	background-color: black;
 	height: 145px;
+	display: none;
 }
 
 .music-title img {
