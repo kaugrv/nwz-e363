@@ -1,18 +1,21 @@
 let currentScreen = 0;
-
 // 0 = Menu principal
 // 4 = Musique (choix Toutes les chansons, Album, ...)
+
+// 6 = Musique-player
 
 let nomsMenus = ["Aléatoire-Complète", "Radio FM", "Affichage de l'Horloge", "Photos", "Musique", "Vidéos", "Paramètres", "Listes de lecture", "Lecture en cours"];
 
 let menuIcon = 4;
 let musicLi = 0;
 
+// Utiliser les flèches du mp4 pour naviguer
 document.querySelector(".up").addEventListener("click", (e) => Navigate("up"));
 document.querySelector(".down").addEventListener("click", (e) => Navigate("down"));
 document.querySelector(".right").addEventListener("click", (e) => Navigate("right"));
 document.querySelector(".left").addEventListener("click", (e) => Navigate("left"));
 
+// Utiliser les flèches du clavier pour naviguer
 document.addEventListener("keydown", function(event) {
     if (event.key == "ArrowLeft"){
         Navigate("left");
@@ -26,21 +29,22 @@ document.addEventListener("keydown", function(event) {
         enter();
           
     }
-
 })
 
 
+// Play et back
 document.querySelector(".play").addEventListener("click", (e) => enter())
 document.querySelector(".back").addEventListener("click", (e) => back())
 
+// Pour naviguer selon l'écran
 function Navigate(direction) {
-if (currentScreen == 0) {
-    menuNavigate(direction)
-}
-if (currentScreen == 4 )
-    musicLiNavigate(direction)
+// Menu : navigue dans la grille d'icônes
+if (currentScreen == 0) menuNavigate(direction)
+// Musique : navigation verticale entre les musique-li (Toutes les musiques, Artistes...)
+if (currentScreen == 4) musicLiNavigate(direction)
 }
 
+// Menu : navigue dans la grille d'icônes
 function menuNavigate(direction) {
     document.getElementById("icon-"+menuIcon).className = "";
     switch (direction) {
@@ -67,6 +71,7 @@ function menuNavigate(direction) {
     document.getElementById("icon-"+menuIcon).className = "hover-icon";
 }
 
+// Musique : navigation verticale entre les musique-li (Toutes les musiques, Artistes...)
 function musicLiNavigate(direction) {
     document.getElementById("musique-li-"+musicLi).className = "musique-li";
     switch (direction) {
@@ -87,35 +92,63 @@ function musicLiNavigate(direction) {
 }
 
 
+// Play 
 function enter() {
+
+    // Menu
     if (currentScreen == 0) {
-        if (menuIcon == 4) // Musique 
+        // Musique
+        if (menuIcon == 4) 
         {
             currentScreen = 4;
             document.querySelector(".musique").style.display = "block";
             document.querySelector(".menu").style.display = "none";
-            document.querySelector(".header").innerHTML = nomsMenus[menuIcon];
+            document.querySelector(".header").innerHTML = nomsMenus[4];
+        }
+        // Aléatoire-Complète
+        if (menuIcon == 0) {
+            currentScreen = 6;
+            document.querySelector(".musique").style.display = "none";
+            document.querySelector(".music-player").style.display = "block";
+            document.querySelector(".header").innerHTML = nomsMenus[4];
+        }
+
+        if (menuIcon==1) {
+            open('https://www.radiomeuh.com/');
         }
     }
 }
 
 function back() {
-
     if (currentScreen == 4) {
         currentScreen = 0;
         document.querySelector(".header").innerHTML = "Accueil";
         document.querySelector(".musique").style.display = "none";
         document.querySelector(".menu").style.display = "flex";
     }
+    if (currentScreen == 6) {
+        currentScreen = 0;
+        document.querySelector(".header").innerHTML = "Accueil";
+        document.querySelector(".music-player").style.display = "none";
+        document.querySelector(".menu").style.display = "flex";
+    }
+
 }
 
+
+
+
+
+ ////// DEBUG //////
 function hideEverything() {
     document.querySelector(".musique").style.display = "none";
     document.querySelector(".menu").style.display = "none";
     document.querySelector(".music-player").style.display = "none";
+    document.querySelector(".header").style.display = "none";
+    document.querySelector(".footer").style.display = "none";
 }
 
-//hideEverything();
+hideEverything();
 
 
 

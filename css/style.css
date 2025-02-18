@@ -70,17 +70,17 @@ body {
 }
 
 .menu-title {
-	margin-bottom: 25px;
+	margin-bottom: 30px;
 }
 
 .menu-icons img {
-	width: 25px;
-	height: 25px;
-	margin: 9px;
+	width: 15px;
+	margin: 11px 14px;
 	filter: invert();
 	transition: ease-in-out 0.1s;
-
 }
+
+
 
 .hover-icon {
 	scale: 1.4;
@@ -247,9 +247,7 @@ body {
 .music-progress-bar-bg, 
 .music-progress-bar {
 	position: absolute;
-	bottom: 17px;
-	height: 4px;
-	bottom: 17px;
+	bottom: 1px;
 	height: 4px;
 
 }
@@ -262,4 +260,48 @@ body {
 .music-progress-bar {
 	background: linear-gradient( #86A0FF,#4576FF, #9FD3FF );
 	width: 40%;
+}
+
+.clock {
+    background-color: black;
+    height: 179px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.clock-shadow {
+	position: absolute;
+	filter: blur(2px) ;
+	z-index: 1;
+}
+.clock-body {
+	z-index: 2;
+}
+
+h2 {
+	font-size: 15px;
+	margin: 0;
+}
+h3 {
+	font-size: 10px;
+	margin: 0;
+}
+
+.hour {
+	position: absolute;
+	text-align: center;
+}
+
+.aiguille-hour {
+	position: absolute;
+	z-index: 10;
+	rotate: 0deg;
+}
+
+.aiguille-minute {
+	position: absolute;
+	z-index: 10;
+	rotate: 360deg;
 }
