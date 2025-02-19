@@ -1,5 +1,4 @@
 body {
-	font-smooth: never;
 	font-family: 'SST', sans-serif;
 	font-weight: lighter;
 	font-size: 10px;
@@ -222,8 +221,10 @@ body {
 }
 
 .music-title img {
-	width: 15px;
+	width: 10px;
 	vertical-align: middle;
+	filter: invert();
+	margin-right: 2px;
 }
 
 .music-cover {
@@ -265,7 +266,7 @@ body {
 .clock {
     background-color: black;
     height: 179px;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -282,9 +283,11 @@ body {
 
 h2 {
 	font-size: 15px;
+	font-weight: lighter;
 	margin: 0;
 }
 h3 {
+	font-weight: lighter;
 	font-size: 10px;
 	margin: 0;
 }
@@ -292,16 +295,20 @@ h3 {
 .hour {
 	position: absolute;
 	text-align: center;
+	top:62px;
+	font-weight: 100;
 }
 
-.aiguille-hour {
+.aiguille-h {
 	position: absolute;
 	z-index: 10;
-	rotate: 0deg;
+	top : 22px;
+
 }
 
-.aiguille-minute {
+.aiguille-m {
 	position: absolute;
 	z-index: 10;
 	rotate: 360deg;
+	top : 22px;
 }

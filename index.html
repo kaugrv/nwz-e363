@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body>
+<body onload="startTime()">
   <div class="mp4-player">
     <div class="mp4-screen">
       <div class="header">Accueil</div>
@@ -44,44 +44,31 @@
         <div class="musique-li" id="musique-li-5">Dossier</div>
       </div>
       <div class="music-player">
-        <div class="music-title">
-          <img src="images/music.png" alt="" class="" />Titre
+        <audio id="audio" src="musique/virilisme.mp3"></audio>
+        <div class="music-title" id="titre">
+          <img src="images/5.png" alt="" class="" />
+          2019
         </div>
-        <img src="musique/X1000.jpg" alt="" class="music-cover" />
+        <img src="musique/X1000.jpg" alt="" class="music-cover"  id="cover" />
         <div class="music-count">1/68</div>
         <div class="music-infos">
-          <div class="music-infos-li">Artiste</div>
-          <div class="music-infos-li">Album imagine ici c'est...</div>
-          <div class="music-infos-li">Genre</div>
-          <div class="music-infos-li">1970</div>
+          <div class="music-infos-li" id="artiste"> X Magenta Club</div>
+          <div class="music-infos-li" id="album"> X Monogramme</div>
+          <div class="music-infos-li" id="genre"> X Electro-pop</div>
+          <div class="music-infos-li" id="annee"> X 2021</div>
         </div>
         <div class="music-progress-bar-bg"></div>
         <div class="music-progress-bar"></div>
       </div>
 
       <div class="clock">
-        <div class="clock-inside">
-          <svg class="clock-shadow" xmlns="http://www.w3.org/2000/svg">
-            <circle r="55" cx="150" cy="80" fill="none" stroke="#4576FF" />
-          </svg> <svg class="clock-shadow" xmlns="http://www.w3.org/2000/svg">
-            <circle r="55" cx="150" cy="80" fill="none" stroke="#4576FF" />
-          </svg> <svg class="clock-shadow" xmlns="http://www.w3.org/2000/svg">
-            <circle r="55" cx="150" cy="80" fill="none" stroke="#4576FF" />
-          </svg>
-          <svg class="clock-body" xmlns="http://www.w3.org/2000/svg">
-            <circle r="55" cx="150" cy="80" fill="none" stroke="white" />
-          </svg>
-        </div>
+        <img src="images/clock.png" alt="">
         <div class="hour">
           <h2>20:41</h2>
           <h3>18/02/2025</h3>
         </div>
-        <svg class="aiguille-hour" xmlns="http://www.w3.org/2000/svg">
-          <circle r="5" cx="150" cy="32" fill="white" />
-        </svg>
-        <svg class="aiguille-minute" xmlns="http://www.w3.org/2000/svg">
-          <circle r="4" cx="150" cy="32" fill="none" stroke="white" />
-        </svg>
+        <img src="images/aiguille heure.png" class="aiguille-h" alt="">
+        <img src="images/aiguille minute.png" class="aiguille-m" alt="">
       </div>
 
 

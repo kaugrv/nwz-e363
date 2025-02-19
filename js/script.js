@@ -1,5 +1,20 @@
+let Musiques = [
+    {
+      Titre: "Virilisme",
+      Artiste: "Magenta Club",
+      Album: "x1000",
+      Genre: "Electropop",
+      Annee: "2024",
+      cover: "../musiques/X1000.jpg",
+      musique: "../musiques/virilisme.mp3"
+    },
+]  
+
+
+
 let currentScreen = 0;
 // 0 = Menu principal
+// 1 = Horloge
 // 4 = Musique (choix Toutes les chansons, Album, ...)
 
 // 6 = Musique-player
@@ -91,6 +106,7 @@ function musicLiNavigate(direction) {
     document.getElementById("musique-li-"+musicLi).className = "musique-li hover-musique-li";
 }
 
+let currentAudio = document.getElementById("audio");
 
 // Play 
 function enter() {
@@ -116,7 +132,19 @@ function enter() {
         if (menuIcon==1) {
             open('https://www.radiomeuh.com/');
         }
+
+        if(menuIcon==2) {
+            currentScreen = 1;
+            document.querySelector(".menu").style.display = "none";
+            document.querySelector(".clock").style.display = "flex";
+            document.querySelector(".header").style.display = "none";
+            document.querySelector(".footer").style.display = "none";
+        }
     }
+
+    if (currentScreen == 6) {
+        currentAudio.play();
+    }   
 }
 
 function back() {
@@ -132,23 +160,73 @@ function back() {
         document.querySelector(".music-player").style.display = "none";
         document.querySelector(".menu").style.display = "flex";
     }
+    if (currentScreen == 1) {
+        currentScreen = 0;
+        document.querySelector(".clock").style.display = "none";
+        document.querySelector(".menu").style.display = "flex";
+        document.querySelector(".header").style.display = "flex";
+        document.querySelector(".footer").style.display = "flex";
+
+
+    }
 
 }
 
+// Horloge
 
 
+function startTime() {
+    const today = new Date();
+    let h = today.getHours();
+    let m = today.getMinutes();
+    let day = today.getDate();
+    let month = today.getMonth() + 1;
+    month = (month < 10 ? '0' : '') + month;
+    let year = today.getFullYear();
+    document.querySelector(".hour h2").innerHTML =
+      h + ":" + (m < 10 ? '0' : '') + m;
+    document.querySelector(".hour h3").innerHTML =
+      day + "/" + month + "/" + year;
+    document.querySelector(".aiguille-h").style.rotate = ((h*360/12)) + (m*360/60)/12+ "deg";
+    document.querySelector(".aiguille-m").style.rotate = (m*360/60) + "deg";
 
+    document.querySelector(".music-progress-bar").style.width = currentAudio.currentTime/currentAudio.duration*100+"%";
+    if (currentScreen == 6) {
+        let nbMin = Math.floor(currentAudio.currentTime/60);
+        let nbS = Math.floor(currentAudio.currentTime - nbMin*60);
+        document.querySelector(".footer-title").innerHTML = 
+        
+        (nbMin < 10 ? '0' : '') + nbMin + ":" + (nbS < 10 ? '0' : '') + nbS ;
+    } 
+    setTimeout(startTime, 1000);
+  }
+
+  function truncate(str) {
+    return (str.length > 20) ?
+      str.slice(0, 19) + '…' : str;
+  }
+  
+  function setMusicInfos(n) {
+    document.getElementById("titre").innerHTML = '<img src="images/5.png" alt="" class="" />'+ truncate(Musiques[n].Titre);
+    document.getElementById("album").innerHTML ="X " + truncate(Musiques[n].Album);
+    document.getElementById("genre").innerHTML ="X " + truncate(Musiques[n].Genre);
+    document.getElementById("annee").innerHTML ="X " + truncate(Musiques[n].Annee);
+  }
+
+  setMusicInfos(0);
 
  ////// DEBUG //////
 function hideEverything() {
     document.querySelector(".musique").style.display = "none";
     document.querySelector(".menu").style.display = "none";
-    document.querySelector(".music-player").style.display = "none";
-    document.querySelector(".header").style.display = "none";
-    document.querySelector(".footer").style.display = "none";
+    //document.querySelector(".music-player").style.display = "none";
+    // document.querySelector(".header").style.display = "none";
+    // document.querySelector(".footer").style.display = "none";
+    document.querySelector(".clock").style.display = "none";
+
 }
 
-hideEverything();
+// hideEverything();
 
 
 
