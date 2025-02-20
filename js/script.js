@@ -5,9 +5,19 @@ let Musiques = [
       Album: "x1000",
       Genre: "Electropop",
       Annee: "2024",
-      cover: "../musiques/X1000.jpg",
-      musique: "../musiques/virilisme.mp3"
+      cover: "musique/X1000.jpg",
+      musique: "musique/virilisme.mp3"
     },
+
+    {
+        Titre: "No Plan",
+        Artiste: "Hozier",
+        Album: "Wasteland, Baby!",
+        Genre: "Pop Soul",
+        Annee: "2019",
+        cover: "musique/wastelandbaby.jpg",
+        musique: "musique/noplan.mp3"
+      },
 ]  
 
 
@@ -23,6 +33,8 @@ let nomsMenus = ["Aléatoire-Complète", "Radio FM", "Affichage de l'Horloge", "
 
 let menuIcon = 4;
 let musicLi = 0;
+
+let pause = true;
 
 // Utiliser les flèches du mp4 pour naviguer
 document.querySelector(".up").addEventListener("click", (e) => Navigate("up"));
@@ -123,10 +135,19 @@ function enter() {
         }
         // Aléatoire-Complète
         if (menuIcon == 0) {
-            currentScreen = 6;
+            
             document.querySelector(".musique").style.display = "none";
             document.querySelector(".music-player").style.display = "block";
             document.querySelector(".header").innerHTML = nomsMenus[4];
+            let nbMin = Math.floor(currentAudio.currentTime/60);
+            let nbS = Math.floor(currentAudio.currentTime - nbMin*60);
+            document.querySelector(".footer-title").innerHTML = "00:00";
+            setMusicInfos(0);
+            
+            pause = false; 
+            document.querySelector(".footer-state").innerHTML = "▶";
+            currentAudio.play();
+            currentScreen = 6;
         }
 
         if (menuIcon==1) {
@@ -143,7 +164,20 @@ function enter() {
     }
 
     if (currentScreen == 6) {
-        currentAudio.play();
+
+        if (pause) {
+            pause = false; 
+            document.querySelector(".footer-state").innerHTML = "▶";
+            currentAudio.play().then(() => {
+            }).catch((error) => {
+                console.error('Erreur de lecture audio', error);
+            });
+        } else {
+            pause = true;
+            document.querySelector(".footer-state").innerHTML = "⏸";
+            currentAudio.pause();
+        }
+        
     }   
 }
 
@@ -156,6 +190,7 @@ function back() {
     }
     if (currentScreen == 6) {
         currentScreen = 0;
+        document.querySelector(".footer-title").innerHTML = Musiques[currentMusic].Titre;
         document.querySelector(".header").innerHTML = "Accueil";
         document.querySelector(".music-player").style.display = "none";
         document.querySelector(".menu").style.display = "flex";
@@ -171,6 +206,60 @@ function back() {
     }
 
 }
+
+let currentMusic = 0;
+
+
+document.addEventListener("keydown", function(event) {
+    if (event.key == "ArrowLeft"){
+        musicQueue("previous");
+    } else if (event.key == "ArrowRight"){
+        musicQueue("next");
+    }})
+
+document.querySelector(".left").addEventListener("click", (e) => musicQueue("previous"));
+document.querySelector(".right").addEventListener("click", (e) => musicQueue("next"));
+
+function musicQueue(sens) {
+if (currentScreen==6) {
+    if (sens=="previous") {
+        if (currentAudio.currentTime < 2){
+            currentMusic--;
+            if (currentMusic < 0) {
+                currentMusic = Musiques.length-1;
+            }
+        }
+    }
+    if (sens=="next") {
+        currentMusic++;
+        if (currentMusic > Musiques.length-1) {
+            currentMusic = 0;
+        }
+    }
+
+    setMusicInfos(currentMusic);
+
+    if (!pause) {
+        currentAudio.currentTime = 0;
+        document.querySelector(".footer-title").innerHTML = "00:00";
+        currentAudio.play().then(() => {
+        }).catch((error) => {
+            console.error('Erreur de lecture audio', error);
+        });
+    } else {
+        currentAudio.currentTime = 0;
+        document.querySelector(".footer-title").innerHTML = "00:00";
+        currentAudio.pause();
+    }
+}
+
+}
+
+
+
+
+
+
 
 // Horloge
 
@@ -190,14 +279,33 @@ function startTime() {
     document.querySelector(".aiguille-h").style.rotate = ((h*360/12)) + (m*360/60)/12+ "deg";
     document.querySelector(".aiguille-m").style.rotate = (m*360/60) + "deg";
 
-    document.querySelector(".music-progress-bar").style.width = currentAudio.currentTime/currentAudio.duration*100+"%";
-    if (currentScreen == 6) {
-        let nbMin = Math.floor(currentAudio.currentTime/60);
-        let nbS = Math.floor(currentAudio.currentTime - nbMin*60);
-        document.querySelector(".footer-title").innerHTML = 
-        
-        (nbMin < 10 ? '0' : '') + nbMin + ":" + (nbS < 10 ? '0' : '') + nbS ;
-    } 
+    if (!pause) {
+        document.querySelector(".music-progress-bar").style.width = currentAudio.currentTime/currentAudio.duration*100+"%";
+        if (currentScreen == 6) {
+            let nbMin = Math.floor(currentAudio.currentTime/60);
+            let nbS = Math.floor(currentAudio.currentTime - nbMin*60);
+            document.querySelector(".footer-title").innerHTML = 
+            
+            (nbMin < 10 ? '0' : '') + nbMin + ":" + (nbS < 10 ? '0' : '') + nbS ;
+
+            if (currentAudio.currentTime==currentAudio.duration) {
+                currentMusic++;
+                if (currentMusic > Musiques.length-1) {
+                    currentMusic = 0;
+                }
+                
+                setMusicInfos(currentMusic);
+                currentAudio.currentTime = 0;
+                document.querySelector(".footer-title").innerHTML = "00:00";
+                currentAudio.play().then(() => {
+                }).catch((error) => {
+                    console.error('Erreur de lecture audio', error);
+                });
+            }
+        }
+        } 
+    
+
     setTimeout(startTime, 1000);
   }
 
@@ -207,13 +315,15 @@ function startTime() {
   }
   
   function setMusicInfos(n) {
+    currentAudio.src = Musiques[currentMusic].musique;
     document.getElementById("titre").innerHTML = '<img src="images/5.png" alt="" class="" />'+ truncate(Musiques[n].Titre);
+    document.getElementById("artiste").innerHTML ="X " + truncate(Musiques[n].Artiste);
     document.getElementById("album").innerHTML ="X " + truncate(Musiques[n].Album);
     document.getElementById("genre").innerHTML ="X " + truncate(Musiques[n].Genre);
     document.getElementById("annee").innerHTML ="X " + truncate(Musiques[n].Annee);
+    document.getElementById("cover").src = Musiques[n].cover;
   }
 
-  setMusicInfos(0);
 
  ////// DEBUG //////
 function hideEverything() {

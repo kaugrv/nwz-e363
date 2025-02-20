@@ -260,7 +260,7 @@ body {
 
 .music-progress-bar {
 	background: linear-gradient( #86A0FF,#4576FF, #9FD3FF );
-	width: 40%;
+	width: 0%;
 }
 
 .clock {
