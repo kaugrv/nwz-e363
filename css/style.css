@@ -55,6 +55,15 @@ body {
 	background: linear-gradient(#858585, #282828);
 }
 
+.footer-state {
+	margin-left: 6px;
+	margin-right: 0px;
+}
+
+.footer-title {
+	padding: 1px;
+}
+
 .battery {
 	height: 12px;
 	filter: invert();
@@ -312,3 +321,17 @@ h3 {
 	rotate: 360deg;
 	top : 22px;
 }
+
+
+
+
+.all-musique {
+	position: absolute;
+	top: 18px;
+	width: 100%;
+	background-color: black;
+	height: 145px;
+	display: none;
+
+}
+
