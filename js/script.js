@@ -1,66 +1,4 @@
-let Musiques = [
-    {
-        Titre: "Virilisme",
-        Artiste: "Magenta Club",
-        Album: "x1000",
-        Genre: "Electropop",
-        Annee: "2024",
-        cover: "musique/X1000.jpg",
-        musique: "musique/virilisme.mp3"
-    },
-
-    {
-        Titre: "Despair, Hangover & Ecstasy",
-        Artiste: "The Dø",
-        Album: "Shake Shook Shaken",
-        Genre: "Indie Pop",
-        Annee: "2014",
-        cover: "musique/shakeshookshaken.jpg",
-        musique: "musique/despairhangoverecstasy.mp3"
-    },
-
-    
-    {
-        Titre: "Good Luck",
-        Artiste: "Broken Bells",
-        Album: "Good Luck",
-        Genre: "Indie Pop",
-        Annee: "2019",
-        cover: "musique/goodluck.jpg",
-        musique: "musique/goodluck.mp3"
-    },
-
-    {
-        Titre: "Soldier of Fortune",
-        Artiste: "Deep Purple",
-        Album: "Stormbringer",
-        Genre: "Folk Rock",
-        Annee: "1974",
-        cover: "musique/stormbringer.jpg",
-        musique: "musique/soldieroffortune.mp3"
-    },
-
-
-    {
-        Titre: "Subterfuge",
-        Artiste: "Magenta Club",
-        Album: "x1000",
-        Genre: "Electropop",
-        Annee: "2024",
-        cover: "musique/X1000.jpg",
-        musique: "musique/subterfuge.mp3"
-    },
-
-    {
-        Titre: "No Plan",
-        Artiste: "Hozier",
-        Album: "Wasteland, Baby!",
-        Genre: "Pop Soul",
-        Annee: "2019",
-        cover: "musique/wastelandbaby.jpg",
-        musique: "musique/noplan.mp3"
-    },
-]
+let Musiques = []
 
 function triAZ(liste) {
     return liste.sort((a, b) => {
@@ -74,7 +12,14 @@ function triAZ(liste) {
     });
 }
 
-Musiques = triAZ(Musiques);
+fetch('./data/musiques.json')
+    .then(response => response.json())
+    .then(data => {
+        Musiques = triAZ(data);
+    })
+    .catch(error => {
+        console.error('Erreur lors de la récupération des musiques:', error);
+    });
 
 
 let currentScreen = 0;
