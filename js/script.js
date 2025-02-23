@@ -122,6 +122,33 @@ function musicLiNavigate(direction) {
 }
 
 
+let toggle = true; 
+
+function alterne() {
+    if (currentScreen!=6) {
+    if (toggle) {
+        document.querySelector(".footer-title").innerHTML = Musiques[currentMusic].Titre;  // Affiche le titre
+    } else {
+        document.querySelector(".footer-title").innerHTML = Musiques[currentMusic].Artiste;  // Affiche l'artiste
+    }
+
+    toggle = !toggle; 
+
+    if (document.querySelector(".footer-title").innerHTML.length>15) {
+        document.querySelector(".footer-title").style.animation = "defilement-rtl 20s infinite linear";
+    } else {
+        document.querySelector(".footer-title").style.animation = "none";
+    }
+}}
+
+var intervalID = null;
+
+function intervalManager(flag) {
+   if(flag)
+     intervalID = setInterval(alterne, 4000);
+   else
+     clearInterval(intervalID);
+}
 
 // Play 
 function enter() {
@@ -139,46 +166,67 @@ function enter() {
         // Aléatoire-Complète
         if (menuIcon == 0) {
             currentScreen = 6;
-            setMusicInfos(0);
+            currentMusic=0;
+            intervalManager(false);
+            setMusicInfos(currentMusic);
             document.querySelector(".musique").style.display = "none";
             document.querySelector(".music-player").style.display = "block";
             document.querySelector(".header").innerHTML = nomsMenus[4];
+            document.querySelector(".footer-mode").style.display ="block";
             let nbMin = Math.floor(currentAudio.currentTime / 60);
             let nbS = Math.floor(currentAudio.currentTime - nbMin * 60);
-            document.querySelector(".footer-title").innerHTML = "00:00";
-
-            currentAudio.currentTime = 0;
-
+            document.querySelector(".footer-title").style.animation = "none";
+            musicReset();
             if (pause) {
-                setMusicInfos(0);
-
+                setMusicInfos(currentMusic);
                 currentAudio.play()
-                    .then(() => {
-                        musicPlay();
-                    })
-                    .catch((error) => {
+                .then(() => {
+                    musicPlay();
+                })
+                .catch((error) => {
                         console.error('Erreur de lecture audio', error);
                     });
-            } else {
-                setMusicInfos(0);
-                currentAudio.pause();
-                currentAudio.currentTime = 0;
-
-
-                setTimeout(() => {
-                    setMusicInfos(0);
+                } else {
+                    setMusicInfos(currentMusic);
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                    
+                    setTimeout(() => {
+                        setMusicInfos(0);
                     currentAudio.play()
-                        .then(() => {
+                    .then(() => {
                             musicPlay();
                         })
                         .catch((error) => {
                             console.error('Erreur de lecture audio', error);
                         });
-                }, 100);
-            }
+                    }, 100);
+                }
             return;
         }
 
+        // Lecture en cours
+        if (menuIcon == 8) {
+            intervalManager(false);
+            document.querySelector(".footer-title").style.animation = "none";
+            document.querySelector(".musique").style.display = "none";
+            document.querySelector(".music-player").style.display = "block";
+            document.querySelector(".header").innerHTML = nomsMenus[4];
+            let nbMin = Math.floor(currentAudio.currentTime / 60);
+            let nbS = Math.floor(currentAudio.currentTime - nbMin * 60);
+            document.querySelector(".footer-title").innerHTML =
+            (nbMin < 10 ? '0' : '') + nbMin + ":" + (nbS < 10 ? '0' : '') + nbS;
+            setTimeout(() => { 
+                currentScreen = 6 ;
+            }, 300);
+            
+            document.querySelector(".footer-mode").style.display ="block";
+            document.querySelector(".footer-title").style.animation = "none";
+            document.querySelector(".music-progress-bar").style.width = currentAudio.currentTime / currentAudio.duration * 100 + "%";
+
+        }
+
+        //Radio FM (Radio Meuh! <3)
         if (menuIcon == 1) {
             open('https://www.radiomeuh.com/');
             return;
@@ -211,13 +259,17 @@ function enter() {
         }
     }
 
+    if (currentScreen == 5) {
+
+    }
+
     // Si on est déjà sur l'écran de lecture (currentScreen == 6), on gère la lecture/pauses
     if (currentScreen == 6) {
-        togglePlayPause();
+        setTimeout(() => { if(currentScreen == 6) togglePlayPause(); }, 300);
     }
 }
 
-
+// Sur écran 6 (lecture de musique), le bouton permet de lancer/arrêter la lecture.
 function togglePlayPause() {
     if (pause) {
         musicPlay();
@@ -242,6 +294,13 @@ function musicPause() {
 
 }
 
+function musicReset() {
+    currentAudio.currentTime = 0;
+    document.querySelector(".footer-title").innerHTML = "00:00";
+    document.querySelector(".music-progress-bar").style.width = "0%";
+}
+
+// Gestion des retours arrières dans les menus
 function back() {
     if (currentScreen == 4) {
         currentScreen = 0;
@@ -380,21 +439,8 @@ function startTime() {
     setTimeout(startTime, 1000);
 }
 
-// function alterneTitreArtiste() {
-//     if (currentScreen != 6) {
-//         let footerTitle = document.querySelector(".footer-title");
-//         let toggle = true;  // Début avec le titre
 
-//         setInterval(() => {
-//             if (toggle) {
-//                 footerTitle.innerHTML = Musiques[currentMusic].Titre;  // Affiche le titre
-//             } else {
-//                 footerTitle.innerHTML = Musiques[currentMusic].Artiste;  // Affiche l'artiste
-//             }
-//             toggle = !toggle;  // Inverse la valeur pour alterner
-//         }, 4000);  // Intervalle de 3 secondes (3000 ms)
-//     }
-// }
+
 
 function truncate(str) {
     return (str.length > 20) ?

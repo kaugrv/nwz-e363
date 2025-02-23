@@ -55,14 +55,46 @@ body {
 	background: linear-gradient(#858585, #282828);
 }
 
+
+.footer-title {
+	position: relative;
+	padding: 1px;
+	direction: rtl;
+	text-wrap-mode: nowrap;
+	width: fit-content;	
+
+}
+
+.footer-title-box {
+	max-width: 90px;
+	overflow: hidden;
+}
+
+@keyframes defilement-rtl {
+	0% {
+	  left: 0px;
+	}
+	90% {
+	  left: -200%;  
+	}
+	90.1% {
+		left: 0px;
+	}
+	100% {
+		left: 0px;
+	}
+}
+
 .footer-state {
 	margin-left: 6px;
 	margin-right: 0px;
 }
 
-.footer-title {
-	padding: 1px;
+.footer-mode {
+	display: none;
 }
+
+
 
 .battery {
 	height: 12px;
@@ -99,17 +131,19 @@ body {
 }
 
 @keyframes clignotement {
-	
+
 	0% {
 		filter: invert() drop-shadow(0 0 2px orange);
 	}
+
 	50% {
 		filter: invert();
 	}
+
 	100% {
 		filter: invert() drop-shadow(0 0 2px orange);
 	}
-  }
+}
 
 .menu-icons {
 	position: absolute;
