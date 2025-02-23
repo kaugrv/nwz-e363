@@ -333,6 +333,7 @@ function musicPlay() {
     document.querySelector(".footer-state").innerHTML = "▶";
     document.querySelector(".footer-state").style.color = "rgb(44, 243, 44)";
     currentAudio.play();
+
 }
 
 // Arrêter
@@ -516,6 +517,17 @@ function setMusicInfos(n) {
     document.getElementById("annee").innerHTML = "X " + truncate(Musiques[n].Annee);
     document.getElementById("cover").src = Musiques[n].cover;
     document.querySelector(".music-count").innerHTML = n + 1 + "/" + Musiques.length;
+    if ('mediaSession' in navigator) {
+
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: Musiques[n].Titre,
+          artist:  Musiques[n].Artiste,
+          album:  Musiques[n].Album,
+          artwork: [
+            { src: Musiques[n].cover}
+          ]
+        });
+}
 }
 
 
