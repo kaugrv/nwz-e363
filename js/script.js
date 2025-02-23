@@ -45,8 +45,11 @@ document.querySelector(".up").addEventListener("click", (e) => Navigate("up"));
 document.querySelector(".down").addEventListener("click", (e) => Navigate("down"));
 document.querySelector(".right").addEventListener("click", (e) => Navigate("right"));
 document.querySelector(".left").addEventListener("click", (e) => Navigate("left"));
+// Enter et back
+document.querySelector(".play").addEventListener("click", (e) => enter())
+document.querySelector(".back").addEventListener("click", (e) => back())
 
-// Utiliser les flèches du clavier pour naviguer
+// Pareil mais les flèches du clavier + Enter,Back,Esc,Espace
 document.addEventListener("keydown", function (event) {
     if (event.key == "ArrowLeft") {
         Navigate("left");
@@ -56,15 +59,12 @@ document.addEventListener("keydown", function (event) {
         Navigate("right");
     } else if (event.key == "ArrowDown") {
         Navigate("down");
-    } else if (event.key == " ") {
+    } else if (event.key == " " || event.key == "Enter") {
         enter();
-
+    } else if (event.key == "Backspace" || event.key == "Escape") {
+        back();
     }
 })
-
-// Enter et back
-document.querySelector(".play").addEventListener("click", (e) => enter())
-document.querySelector(".back").addEventListener("click", (e) => back())
 
 // Pour naviguer selon l'écran
 function Navigate(direction) {
@@ -72,6 +72,7 @@ function Navigate(direction) {
     if (currentScreen == 0) menuNavigate(direction)
     // Musique : navigation verticale entre les musique-li (Toutes les musiques, Artistes...)
     if (currentScreen == 4) musicLiNavigate(direction)
+    if (currentScreen == 5) allMusicNavigate(direction)
 }
 
 // Menu : navigue dans la grille d'icônes
@@ -114,13 +115,57 @@ function musicLiNavigate(direction) {
         default:
             break;
     }
-    musicLi = (musicLi % 6);
+    musicLi = (musicLi % 5);
     if (musicLi < 0) {
-        musicLi += 6;
+        musicLi += 5;
     }
     document.getElementById("musique-li-" + musicLi).className = "musique-li hover-musique-li";
 }
 
+
+let allMusicLi = 0;
+let allMusicpage = 0;
+
+function allMusicNavigate(direction) {
+    document.getElementById("all-musique-li-" + allMusicLi).className = "musique-li";
+    switch (direction) {
+        case "up":
+            allMusicLi -= 1;
+            break;
+        case "down":
+            allMusicLi += 1;
+            break;
+        default:
+            break;
+    }
+
+
+    if (allMusicLi == 8) {
+        allMusicLi = 7 ;
+        allMusicpage ++;
+        if (allMusicpage+allMusicLi == Musiques.length) {
+            allMusicLi = 0;
+            allMusicpage = 0;
+        }
+    }
+    
+    if (allMusicLi == -1) {
+        allMusicLi = 0 ;
+        allMusicpage --;
+        if (allMusicpage == -1) {
+            allMusicLi = 7;
+            allMusicpage = Musiques.length-8;
+        }
+    }
+
+    let listeMusiques = "";
+    for (let i = 0; i < 8; i++) {
+        listeMusiques += '<div class="musique-li"  id="all-musique-li-' + i + '">' + truncate(Musiques[i+allMusicpage].Titre) + '</div>';
+    }
+    document.querySelector(".all-musique").innerHTML = listeMusiques;
+    document.getElementById("all-musique-li-" + allMusicLi).className = "musique-li hover-musique-li";
+
+}
 
 let toggle = true; 
 
@@ -150,9 +195,11 @@ function intervalManager(flag) {
      clearInterval(intervalID);
 }
 
+
+
+
 // Play 
 function enter() {
-    console.log(currentScreen);
     // Menu
     if (currentScreen == 0) {
         // Musique
@@ -232,6 +279,7 @@ function enter() {
             return;
         }
 
+        //Affichage de l'Horloge
         if (menuIcon == 2) {
             currentScreen = 1;
             document.querySelector(".menu").style.display = "none";
@@ -250,9 +298,9 @@ function enter() {
             document.querySelector(".all-musique").style.display = "block";
 
             let listeMusiques = "";
-            listeMusiques += '<div class="musique-li hover-musique-li"  id="musique-li-0">' + truncate(Musiques[0].Titre) + '</div>';
-            for (let i = 1; i < Musiques.length; i++) {
-                listeMusiques += '<div class="musique-li"  id="musique-li-' + i + '">' + Musiques[i].Titre + '</div>';
+            listeMusiques += '<div class="musique-li hover-musique-li"  id="all-musique-li-0">' + truncate(Musiques[0].Titre) + '</div>';
+            for (let i = 1; i < 8; i++) {
+                listeMusiques += '<div class="musique-li"  id="all-musique-li-' + i + '">' + truncate(Musiques[i].Titre) + '</div>';
             }
             document.querySelector(".all-musique").innerHTML = listeMusiques;
             return;
@@ -279,6 +327,7 @@ function togglePlayPause() {
     }
 }
 
+// Lancer
 function musicPlay() {
     pause = false;
     document.querySelector(".footer-state").innerHTML = "▶";
@@ -286,6 +335,7 @@ function musicPlay() {
     currentAudio.play();
 }
 
+// Arrêter
 function musicPause() {
     pause = true;
     document.querySelector(".footer-state").innerHTML = "⏸";
@@ -314,6 +364,12 @@ function back() {
         document.querySelector(".header").innerHTML = "Accueil";
         document.querySelector(".music-player").style.display = "none";
         document.querySelector(".menu").style.display = "flex";
+
+        document.querySelector(".footer-title").innerHTML = Musiques[currentMusic].Titre;
+        
+        intervalManager(true);
+ 
+        document.querySelector(".footer-mode").style.display ="none";
         return;
     }
     if (currentScreen == 1) {
@@ -332,10 +388,9 @@ function back() {
         document.querySelector(".header").innerHTML = nomsMenus[4];
         return;
     }
-
 }
 
-
+// Skip ou previous song : clavier
 document.addEventListener("keydown", function (event) {
     if (event.key == "ArrowLeft") {
         musicQueue("previous");
@@ -344,14 +399,16 @@ document.addEventListener("keydown", function (event) {
     }
 })
 
+// Skip ou previous song : boutons
 document.querySelector(".left").addEventListener("click", (e) => musicQueue("previous"));
 document.querySelector(".right").addEventListener("mouseup", (e) => musicQueue("next"));
 
+
 function musicQueue(sens) {
-
-
     if (currentScreen == 6) {
+        // Previous
         if (sens == "previous") {
+            // Passe à la chanson précédente si l'actuelle est à moins de 2s (sinon, on relance juste l'actuelle)
             if (currentAudio.currentTime < 2) {
                 currentMusic--;
                 if (currentMusic < 0) {
@@ -360,26 +417,26 @@ function musicQueue(sens) {
             }
         }
 
+        // Next
         if (sens == "next") {
-    
             currentMusic++;
             if (currentMusic > Musiques.length - 1) {
                 currentMusic = 0;
             }
         }
 
+        // Get la musique
         setMusicInfos(currentMusic);
 
+        // On peut aussi skip si on est en pause.
         if (!pause) {
-            currentAudio.currentTime = 0;
-            document.querySelector(".footer-title").innerHTML = "00:00";
+            musicReset();
             currentAudio.play().then(() => {
             }).catch((error) => {
                 console.error('Erreur de lecture audio', error);
             });
         } else {
-            currentAudio.currentTime = 0;
-            document.querySelector(".footer-title").innerHTML = "00:00";
+            musicReset();
             currentAudio.pause();
         }
     }
@@ -394,7 +451,6 @@ function musicQueue(sens) {
 
 // Horloge et timer
 
-
 function startTime() {
     const today = new Date();
     let h = today.getHours();
@@ -404,7 +460,7 @@ function startTime() {
     month = (month < 10 ? '0' : '') + month;
     let year = today.getFullYear();
     document.querySelector(".hour h2").innerHTML =
-        h + ":" + (m < 10 ? '0' : '') + m;
+    (h < 10 ? '0' : '') + h + ":" + (m < 10 ? '0' : '') + m;
     document.querySelector(".hour h3").innerHTML =
         day + "/" + month + "/" + year;
     document.querySelector(".aiguille-h").style.rotate = ((h * 360 / 12)) + (m * 360 / 60) / 12 + "deg";
@@ -426,8 +482,7 @@ function startTime() {
                 }
 
                 setMusicInfos(currentMusic);
-                currentAudio.currentTime = 0;
-                document.querySelector(".footer-title").innerHTML = "00:00";
+                musicReset();
                 currentAudio.play().then(() => {
                 }).catch((error) => {
                     console.error('Erreur de lecture audio', error);
@@ -447,6 +502,11 @@ function truncate(str) {
         str.slice(0, 19) + '…' : str;
 }
 
+function truncateforFooter(str) {
+    return (str.length > 7) ?
+        str.slice(0, 6) : str;
+}
+
 function setMusicInfos(n) {
     currentAudio.src = Musiques[n].musique;
     document.getElementById("titre").innerHTML = '<img src="images/5.png" alt="" class="" />' + truncate(Musiques[n].Titre);
@@ -459,18 +519,12 @@ function setMusicInfos(n) {
 }
 
 
-////// DEBUG //////
-function hideEverything() {
-    document.querySelector(".musique").style.display = "none";
-    document.querySelector(".menu").style.display = "none";
-    //document.querySelector(".music-player").style.display = "none";
-    // document.querySelector(".header").style.display = "none";
-    // document.querySelector(".footer").style.display = "none";
-    document.querySelector(".clock").style.display = "none";
 
-}
 
-// hideEverything();
+
+
+
+
 
 
 
