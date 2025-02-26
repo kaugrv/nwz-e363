@@ -9,31 +9,6 @@
     "musique": "musique/virilisme.mp3"
 },
 {
-    "Titre": "Virilisme",
-    "Artiste": "Magenta Club",
-    "Album": "x1000",
-    "Genre": "Electropop",
-    "Annee": "2024",
-    "cover": "musique/X1000.jpg",
-    "musique": "musique/virilisme.mp3"
-},{
-    "Titre": "Virilisme",
-    "Artiste": "Magenta Club",
-    "Album": "x1000",
-    "Genre": "Electropop",
-    "Annee": "2024",
-    "cover": "musique/X1000.jpg",
-    "musique": "musique/virilisme.mp3"
-},{
-    "Titre": "Virilisme",
-    "Artiste": "Magenta Club",
-    "Album": "x1000",
-    "Genre": "Electropop",
-    "Annee": "2024",
-    "cover": "musique/X1000.jpg",
-    "musique": "musique/virilisme.mp3"
-},
-{
     "Titre": "Despair, Hangover & Ecstasy",
     "Artiste": "The Dø",
     "Album": "Shake Shook Shaken",
@@ -83,4 +58,41 @@
     "Annee": "2019",
     "cover": "musique/wastelandbaby.jpg",
     "musique": "musique/noplan.mp3"
+},
+
+{
+    "Titre": "Le même chagrin",
+    "Artiste": "Maxence",
+    "Album": "Tout est trop beau",
+    "Genre": "Indie Pop",
+    "Annee": "2021",
+    "cover": "musique/TETB.jpg",
+    "musique": "musique/lememechagrin.mp3"
+},
+{
+    "Titre": "lèche_vitrine_demo1.wav",
+    "Artiste": "Adèle Castillon",
+    "Album": "Crèvecoeur",
+    "Genre": "French Pop",
+    "Annee": "2024",
+    "cover": "musique/crevecoeur.jpg",
+    "musique": "musique/lechevitrine.mp3"
+},
+{
+    "Titre": "Autotango",
+    "Artiste": "Ryder The Eagle",
+    "Album": "Autotango",
+    "Genre": "Rock",
+    "Annee": "2024",
+    "cover": "musique/autotango.jpg",
+    "musique": "musique/autotango.mp3"
+},
+{
+    "Titre": "The Spiral",
+    "Artiste": "Feldup",
+    "Album": "A Thousand Doors, Just One Key",
+    "Genre": "Slacker Rock",
+    "Annee": "2020",
+    "cover": "musique/atdjok.jpg",
+    "musique": "musique/thespiral.mp3"
 }]

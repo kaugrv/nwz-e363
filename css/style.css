@@ -62,7 +62,7 @@ body {
 	padding: 1px;
 	direction: rtl;
 	text-wrap-mode: nowrap;
-	width: fit-content;	
+	width: fit-content;
 
 }
 
@@ -73,14 +73,17 @@ body {
 
 @keyframes defilement-rtl {
 	0% {
-	  left: 0px;
+		left: 0px;
 	}
+
 	90% {
-	  left: -200%;  
+		left: -200%;
 	}
+
 	90.1% {
 		left: 0px;
 	}
+
 	100% {
 		left: 0px;
 	}
@@ -370,4 +373,22 @@ h3 {
 	height: 145px;
 	display: none;
 
+}
+
+.scrollbar {
+	position: absolute;
+	right:2px;
+	width: 1px;
+	height: 100%;
+	background-color: rgb(202, 202, 202);
+	display: none;
+}
+
+.scrollbar-body {
+	position: relative;
+	right:2px;
+	top:20px;
+	width: 4px;
+	height: 10%;
+	background-color: rgb(255, 255, 255);
 }

@@ -1,25 +1,25 @@
 let Musiques = []
 
-function triAZ(liste) {
-    return liste.sort((a, b) => {
-        if (a['Titre'] < b['Titre']) {
-            return -1;  // a vient avant b
-        }
-        if (a['Titre'] > b['Titre']) {
-            return 1;   // b vient avant a
-        }
-        return 0;  // a et b sont égaux
-    });
-}
-
 fetch('./data/musiques.json')
     .then(response => response.json())
     .then(data => {
-        Musiques = triAZ(data);
+        Musiques = data.sort((a, b) => a.Titre.localeCompare(b.Titre))
     })
     .catch(error => {
         console.error('Erreur lors de la récupération des musiques:', error);
     });
+
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        let temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+      SHUF = true;
+      document.querySelector(".footer-mode").innerHTML = "SHUF";
+      return array;
+}
 
 
 let currentScreen = 0;
@@ -29,6 +29,7 @@ let currentScreen = 0;
 // 5 = Toutes les chansons (A-Z)
 
 // 6 = Musique-player
+// 7 = Musique-player but launched from Toutes les Chansons
 
 let nomsMenus = ["Aléatoire-Complète", "Radio FM", "Affichage de l'Horloge", "Photos", "Musique", "Vidéos", "Paramètres", "Listes de lecture", "Lecture en cours"];
 
@@ -36,6 +37,7 @@ let menuIcon = 4;
 let musicLi = 0;
 
 let pause = true;
+let SHUF = false;
 
 let currentMusic = 0;
 let currentAudio = document.getElementById("audio");
@@ -157,6 +159,8 @@ function allMusicNavigate(direction) {
             allMusicpage = Musiques.length-8;
         }
     }
+    // document.querySelector(".scrollbar-body").style.top = Musiques.length/8+"px";
+    // document.querySelector(".scrollbar-body").style.top = allMusicpage + "%";
 
     let listeMusiques = "";
     for (let i = 0; i < 8; i++) {
@@ -213,7 +217,8 @@ function enter() {
         // Aléatoire-Complète
         if (menuIcon == 0) {
             currentScreen = 6;
-            currentMusic=0;
+            currentMusic = 0;
+            Musiques = shuffle(Musiques);
             intervalManager(false);
             setMusicInfos(currentMusic);
             document.querySelector(".musique").style.display = "none";
@@ -290,13 +295,16 @@ function enter() {
         }
     }
 
+    // Toutes les chansons
     if (currentScreen == 4) {
         if (musicLi == 0) {
             currentScreen = 5;
             document.querySelector(".musique").style.display = "none";
             document.querySelector(".header").innerHTML = "Toutes les Chansons";
             document.querySelector(".all-musique").style.display = "block";
-
+            document.querySelector(".scrollbar").style.display = "block";
+            
+            Musiques.sort((a, b) => a.Titre.localeCompare(b.Titre));
             let listeMusiques = "";
             listeMusiques += '<div class="musique-li hover-musique-li"  id="all-musique-li-0">' + truncate(Musiques[0].Titre) + '</div>';
             for (let i = 1; i < 8; i++) {
@@ -308,12 +316,53 @@ function enter() {
     }
 
     if (currentScreen == 5) {
+        currentScreen = 7;
+        console.log(allMusicLi);
+        currentMusic = allMusicLi;
+        setMusicInfos(currentMusic);
+        intervalManager(false);
+        SHUF = false;
+        document.querySelector(".footer-mode").innerHTML = "";
+        document.querySelector(".musique").style.display = "none";
+        document.querySelector(".music-player").style.display = "block";
+        document.querySelector(".header").innerHTML = nomsMenus[4];
+        document.querySelector(".footer-mode").style.display ="block";
+        let nbMin = Math.floor(currentAudio.currentTime / 60);
+        let nbS = Math.floor(currentAudio.currentTime - nbMin * 60);
+        document.querySelector(".footer-title").style.animation = "none";
+        musicReset();
+        if (pause) {
+            setMusicInfos(currentMusic);
+            currentAudio.play()
+            .then(() => {
+                musicPlay();
+            })
+            .catch((error) => {
+                    console.error('Erreur de lecture audio', error);
+                });
+            } else {
+                setMusicInfos(currentMusic);
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                
+                setTimeout(() => {
+                    setMusicInfos(currentMusic);
+                currentAudio.play()
+                .then(() => {
+                        musicPlay();
+                    })
+                    .catch((error) => {
+                        console.error('Erreur de lecture audio', error);
+                    });
+                }, 100);
+            }
+        return;
 
     }
 
     // Si on est déjà sur l'écran de lecture (currentScreen == 6), on gère la lecture/pauses
-    if (currentScreen == 6) {
-        setTimeout(() => { if(currentScreen == 6) togglePlayPause(); }, 300);
+    if (currentScreen == 6 || currentScreen == 7) {
+        setTimeout(() => { if(currentScreen == 6 || currentScreen == 7) togglePlayPause(); }, 300);
     }
 }
 
@@ -373,6 +422,20 @@ function back() {
         document.querySelector(".footer-mode").style.display ="none";
         return;
     }
+    if (currentScreen == 7) {
+        currentScreen = 5;
+        document.querySelector(".header").innerHTML = "Toutes les Chansons";
+        document.querySelector(".music-player").style.display = "none";
+        
+        document.querySelector(".footer-title").innerHTML = Musiques[currentMusic].Titre;
+        document.querySelector(".all-musique").style.display = "block";
+        document.querySelector(".scrollbar").style.display = "block";
+            
+        intervalManager(true);
+        document.querySelector(".footer-mode").style.display ="none";
+        return;
+
+    }
     if (currentScreen == 1) {
         currentScreen = 0;
         document.querySelector(".clock").style.display = "none";
@@ -386,6 +449,8 @@ function back() {
         document.querySelector(".musique").style.display = "block";
         document.querySelector(".menu").style.display = "none";
         document.querySelector(".all-musique").style.display = "none";
+        document.querySelector(".scrollbar").style.display = "none";
+            
         document.querySelector(".header").innerHTML = nomsMenus[4];
         return;
     }
@@ -406,7 +471,7 @@ document.querySelector(".right").addEventListener("mouseup", (e) => musicQueue("
 
 
 function musicQueue(sens) {
-    if (currentScreen == 6) {
+    if (currentScreen == 6 || currentScreen == 7 ) {
         // Previous
         if (sens == "previous") {
             // Passe à la chanson précédente si l'actuelle est à moins de 2s (sinon, on relance juste l'actuelle)
@@ -467,9 +532,9 @@ function startTime() {
     document.querySelector(".aiguille-h").style.rotate = ((h * 360 / 12)) + (m * 360 / 60) / 12 + "deg";
     document.querySelector(".aiguille-m").style.rotate = (m * 360 / 60) + "deg";
 
-    if (!pause && currentScreen == 6) {
+    if (!pause && (currentScreen == 6 || currentScreen == 7)) {
         document.querySelector(".music-progress-bar").style.width = currentAudio.currentTime / currentAudio.duration * 100 + "%";
-        if (currentScreen == 6) {
+        if (currentScreen == 6 || currentScreen == 7) {
             let nbMin = Math.floor(currentAudio.currentTime / 60);
             let nbS = Math.floor(currentAudio.currentTime - nbMin * 60);
             document.querySelector(".footer-title").innerHTML =
