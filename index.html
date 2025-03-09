@@ -1,89 +1,89 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Wendy Gervais" />
+    <meta name="language" content="fr" />
+    <title>my mp4 player</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="author" content="Wendy Gervais" />
-  <meta name="language" content="fr" />
-  <title>my mp4 player</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
+  <body onload="startTime()">
+    <div class="mp4-player">
+      <div class="mp4-screen">
+        <div class="header">Accueil</div>
+        <div class="footer">
+          <span class="footer-state">⏸</span>
+          <div class="footer-title-box"><span class="footer-title"></span></div>
+          <span class="footer-mode">SHUF</span
+          ><span class="footer-battery"
+            ><img src="images/battery.png" alt="" class="battery"
+          /></span>
+        </div>
+        <div class="menu">
+          <div class="menu-icons">
+            <img src="images/1.svg" id="icon-0" />
+            <img src="images/2.svg" id="icon-1" />
+            <img src="images/3.svg" id="icon-2" />
+            <img src="images/4.svg" id="icon-3" />
+            <img src="images/5.svg" id="icon-4" class="hover-icon" />
+            <img src="images/6.svg" id="icon-5" />
+            <img src="images/7.svg" id="icon-6" />
+            <img src="images/8.svg" id="icon-7" />
+            <img src="images/9.svg" id="icon-8" />
+          </div>
+          <div class="menu-title">Musique</div>
+        </div>
+        <div class="musique">
+          <div class="musique-li hover-musique-li" id="musique-li-0">
+            Toutes les chansons
+          </div>
+          <div class="musique-li" id="musique-li-1">Album</div>
+          <div class="musique-li" id="musique-li-2">Artiste</div>
+          <div class="musique-li" id="musique-li-3">Genre</div>
+          <div class="musique-li" id="musique-li-4">Année de sortie</div>
+        </div>
+        <div class="all-musique">x</div>
+        <div class="scrollbar"><div class="scrollbar-body"></div></div>
+        <div class="music-player">
+          <audio id="audio" src="musique/virilisme.mp3"></audio>
+          <div class="music-title" id="titre">
+            <img src="images/5.png" alt="" class="" />
+            Titre
+          </div>
+          <img src="musique/X1000.jpg" alt="" class="music-cover" id="cover" />
+          <div class="music-count">1/68</div>
+          <div class="music-infos">
+            <div class="music-infos-li" id="artiste">X Ariste</div>
+            <div class="music-infos-li" id="album">X Album</div>
+            <div class="music-infos-li" id="genre">X Genre</div>
+            <div class="music-infos-li" id="annee">X Annee</div>
+          </div>
+          <div class="music-progress-bar-bg"></div>
+          <div class="music-progress-bar"></div>
+        </div>
 
-<body onload="startTime()">
-  <div class="mp4-player">
-    <div class="mp4-screen">
-      <div class="header">Accueil</div>
-      <div class="footer">
-        <span class="footer-state">⏸</span><div class="footer-title-box"><span class="footer-title"></span></div><span class="footer-mode">SHUF</span><span
-          class="footer-battery"><img src="images/battery.png" alt="" class="battery" /></span>
-      </div>
-      <div class="menu">
-        <div class="menu-icons">
-          <img src="images/1.svg" id="icon-0" />
-          <img src="images/2.svg" id="icon-1" />
-          <img src="images/3.svg" id="icon-2" />
-          <img src="images/4.svg" id="icon-3" />
-          <img src="images/5.svg" id="icon-4" class="hover-icon" />
-          <img src="images/6.svg" id="icon-5" />
-          <img src="images/7.svg" id="icon-6" />
-          <img src="images/8.svg" id="icon-7" />
-          <img src="images/9.svg" id="icon-8" />
+        <div class="clock">
+          <img src="images/clock.png" alt="" />
+          <div class="hour">
+            <h2>20:41</h2>
+            <h3>18/02/2025</h3>
+          </div>
+          <img src="images/aiguille heure.png" class="aiguille-h" alt="" />
+          <img src="images/aiguille minute.png" class="aiguille-m" alt="" />
         </div>
-        <div class="menu-title">Musique</div>
-      </div>
-      <div class="musique">
-        <div class="musique-li hover-musique-li" id="musique-li-0">
-          Toutes les chansons
-        </div>
-        <div class="musique-li" id="musique-li-1">Album</div>
-        <div class="musique-li" id="musique-li-2">Artiste</div>
-        <div class="musique-li" id="musique-li-3">Genre</div>
-        <div class="musique-li" id="musique-li-4">Année de sortie</div>
-      </div>
-      <div class="all-musique">x</div>
-      <div class="scrollbar"><div class="scrollbar-body"></div></div>
-      <div class="music-player">
-        <audio id="audio" src="musique/virilisme.mp3"></audio>
-        <div class="music-title" id="titre">
-          <img src="images/5.png" alt="" class="" />
-          Titre
-        </div>
-        <img src="musique/X1000.jpg" alt="" class="music-cover"  id="cover" />
-        <div class="music-count">1/68</div>
-        <div class="music-infos">
-          <div class="music-infos-li" id="artiste"> X Ariste</div>
-          <div class="music-infos-li" id="album"> X Album</div>
-          <div class="music-infos-li" id="genre"> X Genre</div>
-          <div class="music-infos-li" id="annee"> X Annee</div>
-        </div>
-        <div class="music-progress-bar-bg"></div>
-        <div class="music-progress-bar"></div>
-      </div>
-
-      <div class="clock">
-        <img src="images/clock.png" alt="">
-        <div class="hour">
-          <h2>20:41</h2>
-          <h3>18/02/2025</h3>
-        </div>
-        <img src="images/aiguille heure.png" class="aiguille-h" alt="">
-        <img src="images/aiguille minute.png" class="aiguille-m" alt="">
       </div>
 
+      <div class="button back"></div>
+      <div class="button option"></div>
+      <div class="button play"></div>
+      <div class="arrow up"></div>
+      <div class="arrow down"></div>
+      <div class="arrow left"></div>
+      <div class="arrow right"></div>
     </div>
 
-    <div class="button back"></div>
-    <div class="button option"></div>
-    <div class="button play"></div>
-    <div class="arrow up"></div>
-    <div class="arrow down"></div>
-    <div class="arrow left"></div>
-    <div class="arrow right"></div>
-  </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="js/script.js"></script>
-</body>
-
+    <script src="js/script.js"></script>
+  </body>
 </html>
