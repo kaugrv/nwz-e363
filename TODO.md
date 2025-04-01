@@ -1,5 +1,5 @@
 
-[] FM : boucle FIP / Nostalgie / Radio Meuh
+[X] FM : boucle FIP / Nostalgie / Radio Meuh
 [] Ne pas lancer Lecture en cours si pas de lecture en cours
 [] Liens > Linktree + Changer icône
 [] A propos > Petite fenêtre explicative + Changer icône

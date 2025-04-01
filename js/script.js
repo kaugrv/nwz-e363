@@ -51,6 +51,8 @@ let SHUF = false;
 let currentMusic = 0;
 let currentAudio = document.getElementById("audio");
 
+let radio = 0;
+
 // Utiliser les flèches du mp4 pour naviguer
 document.querySelector(".up").addEventListener("click", (e) => Navigate("up"));
 document
@@ -299,9 +301,13 @@ function enter() {
         (currentAudio.currentTime / currentAudio.duration) * 100 + "%";
     }
 
-    //Radio FM (Radio Meuh! <3)
+    //Radio FM
     if (menuIcon == 1) {
-      open("https://www.radiomeuh.com/");
+      if (radio==0) open("https://www.radiomeuh.com/");
+      else if (radio==1) open("https://www.nostalgie.fr/");
+      else if (radio==2) open("https://www.radiofrance.fr/fip");
+
+      radio = (radio+1)%3;
       return;
     }
 
