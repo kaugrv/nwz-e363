@@ -313,6 +313,11 @@ function enter() {
       return;
     }
 
+    //Liens
+    if (menuIcon == 7) {
+      open("https://kaugrv.github.io/xmb-portfolio/")
+    }
+
     //Affichage de l'Horloge
     if (menuIcon == 2) {
       currentScreen = 1;
@@ -632,3 +637,4 @@ function setMusicInfos(n) {
     });
   }
 }
+

@@ -1,7 +1,8 @@
 
 [X] FM : boucle FIP / Nostalgie / Radio Meuh
 [X] Ne pas lancer Lecture en cours si pas de lecture en cours
-[] Liens > Linktree + Changer icône
+[X] Liens > Linktree 
+[] Liens > Changer icône
 [] A propos > Petite fenêtre explicative + Changer icône
 
 [] Scrollbar Musiques
@@ -12,8 +13,7 @@
     [] Genre
     [] Année de sortie
 
-[] Désactiver le bouton Option (ou en faire Easter Egg)
-[] Horloge en écran de veille
+[X] Désactiver le bouton Option (ou en faire Easter Egg)
 
 [] Icônes Artiste, Album, Genre, Année
 [] Icône lecture en cours en bas
