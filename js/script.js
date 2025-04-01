@@ -47,6 +47,7 @@ let musicLi = 0;
 
 let pause = true;
 let SHUF = false;
+let firstMusicPlayed = false;
 
 let currentMusic = 0;
 let currentAudio = document.getElementById("audio");
@@ -240,6 +241,7 @@ function enter() {
       currentScreen = 6;
       currentMusic = 0;
       Musiques = shuffle(Musiques);
+      firstMusicPlayed = true;
       intervalManager(false);
       setMusicInfos(currentMusic);
       document.querySelector(".musique").style.display = "none";
@@ -281,7 +283,7 @@ function enter() {
     }
 
     // Lecture en cours
-    if (menuIcon == 8) {
+    if (menuIcon == 8 && firstMusicPlayed) {
       intervalManager(false);
       document.querySelector(".footer-title").style.animation = "none";
       document.querySelector(".musique").style.display = "none";
@@ -354,6 +356,7 @@ function enter() {
     currentScreen = 7;
     console.log(allMusicLi);
     currentMusic = allMusicLi +allMusicpage;
+    firstMusicPlayed = true;
     setMusicInfos(currentMusic);
     intervalManager(false);
     SHUF = false;
