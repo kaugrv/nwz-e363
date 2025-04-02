@@ -7,13 +7,8 @@
   
 - [X] Scrollbar Musiques  
   
-- [ ] Musiques (ou enlever les catégories > passer direct à toutes les chansons ?)  
-    - [ ] Album  
-    - [ ] Artiste  
-    - [ ] Genre  
-    - [ ] Année de sortie  
-  
-[X] Désactiver le bouton Option (ou en faire Easter Egg)  
+- [X] Musiques : ou enlever les catégories > passer direct à toutes les chansons
+- [X] Désactiver le bouton Option (ou en faire Easter Egg)  
   
 - [ ] Icônes Artiste, Album, Genre, Année  
 - [ ] Icône lecture en cours en bas  

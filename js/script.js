@@ -236,10 +236,35 @@ function enter() {
   if (currentScreen == 0) {
     // Musique
     if (menuIcon == 4) {
-      currentScreen = 4;
-      document.querySelector(".musique").style.display = "block";
+      // currentScreen = 4;
+      // document.querySelector(".musique").style.display = "block";
+      // document.querySelector(".menu").style.display = "none";
+      // document.querySelector(".header").innerHTML = nomsMenus[4];
+      // console.log(currentScreen)
+      currentScreen = 5;
       document.querySelector(".menu").style.display = "none";
-      document.querySelector(".header").innerHTML = nomsMenus[4];
+      document.querySelector(".header").innerHTML = "Toutes les Chansons";
+      document.querySelector(".all-musique").style.display = "block";
+      document.querySelector(".scrollbar").style.display = "block";
+
+      Musiques.sort((a, b) => a.Titre.localeCompare(b.Titre));
+      let listeMusiques = "";
+      listeMusiques +=
+        '<div class="musique-li hover-musique-li"  id="all-musique-li-0">' +
+        truncate(Musiques[0].Titre) +
+        "</div>";
+      for (let i = 1; i < 8; i++) {
+        listeMusiques +=
+          '<div class="musique-li"  id="all-musique-li-' +
+          i +
+          '">' +
+          truncate(Musiques[i].Titre) +
+          "</div>";
+      }
+      document.querySelector(".all-musique").innerHTML = listeMusiques;
+      return;
+      
+
       return;
     }
     // Aléatoire-Complète
@@ -336,36 +361,36 @@ function enter() {
   }
 
   // Toutes les chansons
-  if (currentScreen == 4) {
-    if (musicLi == 0) {
-      currentScreen = 5;
-      document.querySelector(".musique").style.display = "none";
-      document.querySelector(".header").innerHTML = "Toutes les Chansons";
-      document.querySelector(".all-musique").style.display = "block";
-      document.querySelector(".scrollbar").style.display = "block";
+  // if (currentScreen == 4) {
+  //   if (musicLi == 0) {
+  //     currentScreen = 5;
+  //     document.querySelector(".musique").style.display = "none";
+  //     document.querySelector(".header").innerHTML = "Toutes les Chansons";
+  //     document.querySelector(".all-musique").style.display = "block";
+  //     document.querySelector(".scrollbar").style.display = "block";
 
-      Musiques.sort((a, b) => a.Titre.localeCompare(b.Titre));
-      let listeMusiques = "";
-      listeMusiques +=
-        '<div class="musique-li hover-musique-li"  id="all-musique-li-0">' +
-        truncate(Musiques[0].Titre) +
-        "</div>";
-      for (let i = 1; i < 8; i++) {
-        listeMusiques +=
-          '<div class="musique-li"  id="all-musique-li-' +
-          i +
-          '">' +
-          truncate(Musiques[i].Titre) +
-          "</div>";
-      }
-      document.querySelector(".all-musique").innerHTML = listeMusiques;
-      return;
-    }
-  }
+  //     Musiques.sort((a, b) => a.Titre.localeCompare(b.Titre));
+  //     let listeMusiques = "";
+  //     listeMusiques +=
+  //       '<div class="musique-li hover-musique-li"  id="all-musique-li-0">' +
+  //       truncate(Musiques[0].Titre) +
+  //       "</div>";
+  //     for (let i = 1; i < 8; i++) {
+  //       listeMusiques +=
+  //         '<div class="musique-li"  id="all-musique-li-' +
+  //         i +
+  //         '">' +
+  //         truncate(Musiques[i].Titre) +
+  //         "</div>";
+  //     }
+  //     document.querySelector(".all-musique").innerHTML = listeMusiques;
+  //     console.log(currentScreen)
+  //     return;
+  //   }
+  // }
 
   if (currentScreen == 5) {
     currentScreen = 7;
-    console.log(allMusicLi);
     currentMusic = allMusicLi +allMusicpage;
     firstMusicPlayed = true;
     setMusicInfos(currentMusic);
@@ -409,6 +434,8 @@ function enter() {
           });
       }, 100);
     }
+    console.log(currentScreen)
+
     return;
   }
 
@@ -418,6 +445,7 @@ function enter() {
       if (currentScreen == 6 || currentScreen == 7) togglePlayPause();
     }, 300);
   }
+
 }
 
 // Sur écran 6 (lecture de musique), le bouton permet de lancer/arrêter la lecture.
@@ -453,13 +481,24 @@ function musicReset() {
 
 // Gestion des retours arrières dans les menus
 function back() {
-  if (currentScreen == 4) {
+  // Musique > Accueil
+  // if (currentScreen == 4) {
+  //   currentScreen = 0;
+  //   document.querySelector(".header").innerHTML = "Accueil";
+  //   document.querySelector(".musique").style.display = "none";
+  //   document.querySelector(".menu").style.display = "flex";
+  //   return;
+  // }
+  // Toutes les Chansons > Accueil
+  if (currentScreen == 5) {
     currentScreen = 0;
     document.querySelector(".header").innerHTML = "Accueil";
-    document.querySelector(".musique").style.display = "none";
     document.querySelector(".menu").style.display = "flex";
+    document.querySelector(".all-musique").style.display = "none";
+    document.querySelector(".scrollbar").style.display = "none";
     return;
   }
+  // Player > Accueil
   if (currentScreen == 6) {
     currentScreen = 0;
     document.querySelector(".header").innerHTML = "Accueil";
@@ -474,6 +513,7 @@ function back() {
     document.querySelector(".footer-mode").style.display = "none";
     return;
   }
+  // Player > Toutes les Chansons
   if (currentScreen == 7) {
     currentScreen = 5;
     document.querySelector(".header").innerHTML = "Toutes les Chansons";
@@ -488,6 +528,7 @@ function back() {
     document.querySelector(".footer-mode").style.display = "none";
     return;
   }
+  // Horloge > Accueil
   if (currentScreen == 1) {
     currentScreen = 0;
     document.querySelector(".clock").style.display = "none";
@@ -496,16 +537,17 @@ function back() {
     document.querySelector(".footer").style.display = "flex";
     return;
   }
-  if (currentScreen == 5) {
-    currentScreen = 4;
-    document.querySelector(".musique").style.display = "block";
-    document.querySelector(".menu").style.display = "none";
-    document.querySelector(".all-musique").style.display = "none";
-    document.querySelector(".scrollbar").style.display = "none";
+  // Toutes les chansons > Musique
+  // if (currentScreen == 5) {
+  //   currentScreen = 4;
+  //   document.querySelector(".musique").style.display = "block";
+  //   document.querySelector(".menu").style.display = "none";
+  //   document.querySelector(".all-musique").style.display = "none";
+  //   document.querySelector(".scrollbar").style.display = "none";
 
-    document.querySelector(".header").innerHTML = nomsMenus[4];
-    return;
-  }
+  //   document.querySelector(".header").innerHTML = nomsMenus[4];
+  //   return;
+  // }
 }
 
 // Skip ou previous song : clavier
