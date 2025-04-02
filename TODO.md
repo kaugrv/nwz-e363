@@ -3,7 +3,8 @@
 - [X] Ne pas lancer Lecture en cours si pas de lecture en cours  
 - [X] Liens > Linktree   
 - [ ] Liens > Changer icône  
-- [ ] A propos > Petite fenêtre explicative + Changer icône  
+- [X] A propos > Petite fenêtre explicative 
+- [ ] A propos > Changer icône  
   
 - [X] Scrollbar Musiques  
   

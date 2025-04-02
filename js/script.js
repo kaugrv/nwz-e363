@@ -344,8 +344,14 @@ function enter() {
       return;
     }
 
+    //A propos 
+    if  (menuIcon == 7) {
+      currentScreen = 8;
+      document.querySelector(".message-voile").style.display = "block";
+    }
+
     //Liens
-    if (menuIcon == 7) {
+    if (menuIcon == 6) {
       open("https://kaugrv.github.io/xmb-portfolio/")
     }
 
@@ -548,6 +554,12 @@ function back() {
   //   document.querySelector(".header").innerHTML = nomsMenus[4];
   //   return;
   // }
+
+  //A propos > Accueil
+  if (currentScreen == 8) {
+    currentScreen = 0;
+    document.querySelector(".message-voile").style.display = "none";
+  }
 }
 
 // Skip ou previous song : clavier

@@ -363,4 +363,29 @@ h3 {
   width: 4px;
   height: 10%;
   background-color: rgb(255, 255, 255);
+  
+}
+
+.message-voile {
+  background-color: #00000075;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  display: none;
+}
+.message {
+  color: white;
+  margin: 9px;
+  padding: 3px;
+  background-color: black;
+  z-index: 15;
+  border: solid 2px white;
+  position: absolute;
+  height: 50%;
+  text-align:center;
+  top: 20px;
+  overflow-y:scroll;
+  scrollbar-width: thin;
+
 }
