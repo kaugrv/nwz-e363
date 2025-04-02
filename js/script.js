@@ -152,9 +152,13 @@ function allMusicNavigate(direction) {
   switch (direction) {
     case "up":
       allMusicLi -= 1;
+      document.querySelector(".scrollbar-body").style.top = (allMusicLi+allMusicpage)/Musiques.length*89 + "%";
+
       break;
     case "down":
       allMusicLi += 1;
+      document.querySelector(".scrollbar-body").style.top = (allMusicLi+allMusicpage)/Musiques.length*89 + "%";
+
       break;
     default:
       break;
@@ -164,6 +168,7 @@ function allMusicNavigate(direction) {
     allMusicLi = 7;
     allMusicpage++;
     if (allMusicpage + allMusicLi == Musiques.length) {
+      document.querySelector(".scrollbar-body").style.top ="0%";
       allMusicLi = 0;
       allMusicpage = 0;
     }
@@ -173,6 +178,7 @@ function allMusicNavigate(direction) {
     allMusicLi = 0;
     allMusicpage--;
     if (allMusicpage == -1) {
+      document.querySelector(".scrollbar-body").style.top ="89%";
       allMusicLi = 7;
       allMusicpage = Musiques.length - 8;
     }
@@ -370,6 +376,8 @@ function enter() {
     document.querySelector(".music-player").style.display = "block";
     document.querySelector(".header").innerHTML = nomsMenus[4];
     document.querySelector(".footer-mode").style.display = "block";
+    document.querySelector(".scrollbar").style.display = "none";
+
     let nbMin = Math.floor(currentAudio.currentTime / 60);
     let nbS = Math.floor(currentAudio.currentTime - nbMin * 60);
     document.querySelector(".footer-title").style.animation = "none";

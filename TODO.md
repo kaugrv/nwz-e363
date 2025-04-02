@@ -5,7 +5,7 @@
 - [ ] Liens > Changer icône  
 - [ ] A propos > Petite fenêtre explicative + Changer icône  
   
-- [ ] Scrollbar Musiques  
+- [X] Scrollbar Musiques  
   
 - [ ] Musiques (ou enlever les catégories > passer direct à toutes les chansons ?)  
     - [ ] Album  

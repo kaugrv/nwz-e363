@@ -360,7 +360,6 @@ h3 {
 .scrollbar-body {
   position: relative;
   right: 2px;
-  top: 20px;
   width: 4px;
   height: 10%;
   background-color: rgb(255, 255, 255);
