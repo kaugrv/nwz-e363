@@ -26,6 +26,19 @@ body {
   color: white;
   background: linear-gradient(black, black, black, #140756);
   border: solid black 1px;
+  animation: flicking  0.1s infinite;
+}
+
+@keyframes flicking {
+  0% {
+    filter: brightness(1.05);
+  }
+  50% {
+    filter: brightness(1);
+  }
+  100% {
+    filter: brightness(1.05);
+  }
 }
 
 .header,
