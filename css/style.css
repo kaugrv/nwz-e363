@@ -73,8 +73,9 @@ body {
 }
 
 .footer-title-box {
-  max-width: 90px;
+  max-width: 80px;
   overflow: hidden;
+  margin-left: 18px;
 }
 
 @keyframes defilement-rtl {
@@ -422,4 +423,46 @@ h3 {
   100% { 
     opacity: 0%;
   }
+}
+
+.all-photos {
+  display: none;
+  position: absolute;
+  top: 18px;
+  width: 100%;
+  background-color: black;
+  height: 145px;
+  color: white;
+}
+
+.photo-li {
+  margin: 0px 3px;
+  padding: 1px;
+  border: solid 1px rgba(255, 166, 0, 0);
+}
+
+.hover-photo-li {
+  border: solid 1px orange;
+  color: black;
+  background: linear-gradient(white, yellow);
+}
+
+.preview-photo-li {
+  height: 21px;
+  width: 30px;
+  vertical-align: middle;
+  border: solid 1px gray;
+  margin: 1px;
+}
+
+.photo-player {
+  display: none;
+}
+
+.footer-toggle-icon {
+  height: 8px;
+  margin-top: 4px;
+  vertical-align: middle;
+  position: absolute;
+  left: 20px;
 }

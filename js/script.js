@@ -1,4 +1,6 @@
 let Musiques = [];
+let Photos = [];
+let Videos = [];
 
 fetch("./data/musiques.json")
   .then((response) => response.json())
@@ -8,6 +10,19 @@ fetch("./data/musiques.json")
   .catch((error) => {
     console.error("Erreur lors de la récupération des musiques:", error);
   });
+
+fetch("./data/photos.json")
+.then((response) => response.json())
+.then((data) => {
+  Photos = data.sort((a, b) => a.Nom.localeCompare(b.Nom));
+
+})
+.catch((error) => {
+  console.error("Erreur lors de la récupération des photos:", error);
+});
+
+
+
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -29,6 +44,10 @@ let currentScreen = 0;
 
 // 6 = Musique-player
 // 7 = Musique-player but launched from Toutes les Chansons
+
+// 8 = Message à propos
+// 9 = Photos
+// 10 = Videos
 
 let nomsMenus = [
   "Aléatoire-Complète",
@@ -80,6 +99,10 @@ let firstMusicPlayed = false;
 let currentMusic = 0;
 let currentAudio = document.getElementById("audio");
 
+let currentPhoto = 0;
+let allPhotoLi = 0;
+let allPhotoPage =  0;
+
 let radio = 0;
 
 // Utiliser les flèches du mp4 pour naviguer
@@ -121,6 +144,7 @@ function Navigate(direction) {
   // Musique : navigation verticale entre les musique-li (Toutes les musiques, Artistes...)
   if (currentScreen == 4) musicLiNavigate(direction);
   if (currentScreen == 5) allMusicNavigate(direction);
+  if (currentScreen == 9) allPhotosNavigate(direction);
 }
 
 // Menu : navigue dans la grille d'icônes
@@ -174,6 +198,7 @@ function musicLiNavigate(direction) {
 let allMusicLi = 0;
 let allMusicpage = 0;
 
+// Navigue dans la liste de toutes les chansons
 function allMusicNavigate(direction) {
   document.getElementById("all-musique-li-" + allMusicLi).className =
     "musique-li";
@@ -186,7 +211,6 @@ function allMusicNavigate(direction) {
     case "down":
       allMusicLi += 1;
       document.querySelector(".scrollbar-body").style.top = (allMusicLi+allMusicpage)/Musiques.length*89 + "%";
-
       break;
     default:
       break;
@@ -211,8 +235,7 @@ function allMusicNavigate(direction) {
       allMusicpage = Musiques.length - 8;
     }
   }
-  // document.querySelector(".scrollbar-body").style.top = Musiques.length/8+"px";
-  // document.querySelector(".scrollbar-body").style.top = allMusicpage + "%";
+
 
   let listeMusiques = "";
   for (let i = 0; i < 8; i++) {
@@ -228,6 +251,58 @@ function allMusicNavigate(direction) {
     "musique-li hover-musique-li";
 }
 
+// Navigue dans la liste de toutes les photos
+function allPhotosNavigate(direction) {
+  document.getElementById("all-photo-li-" + allPhotoLi).className =
+  "photo-li";
+  switch (direction) {
+    case "up":
+      allPhotoLi -= 1;
+      document.querySelector(".scrollbar-body").style.top = (allPhotoLi+allPhotoPage)/Photos.length*89 + "%";
+      break;
+    case "down":
+      allPhotoLi += 1;
+      document.querySelector(".scrollbar-body").style.top = (allPhotoLi+allPhotoPage)/Photos.length*89 + "%";
+      break;
+
+    default:
+      break;
+  }
+
+  if (allPhotoLi == 5) {
+    allPhotoLi = 4;
+    allPhotoPage++;
+    if (allPhotoPage + allPhotoLi == Photos.length) {
+      document.querySelector(".scrollbar-body").style.top ="0%";
+      allPhotoLi = 0;
+      allPhotoPage = 0;
+    }
+  }
+
+  if (allPhotoLi == -1) {
+    allPhotoLi = 0;
+    allPhotoPage--;
+    if (allPhotoPage == -1) {
+      document.querySelector(".scrollbar-body").style.top ="89%";
+      allPhotoLi = 4;
+      allPhotoPage = Photos.length - 5;
+    }
+  }
+
+  let listePhotos = "";
+  for (let i = 0; i < 5; i++) {
+      listePhotos +=
+        '<div class="photo-li"  id="all-photo-li-' +
+        i +
+        '">' + '<img src="'+ Photos[i+allPhotoPage].Path+'" class="preview-photo-li"/>' +
+        truncatePhoto(Photos[i+allPhotoPage].Nom) +
+        "</div>";
+    }
+    document.querySelector(".all-photos").innerHTML = listePhotos;
+    document.getElementById("all-photo-li-" + allPhotoLi).className =
+      "photo-li hover-photo-li";
+}
+
 let toggle = true;
 
 function alterne() {
@@ -235,9 +310,11 @@ function alterne() {
     if (toggle) {
       document.querySelector(".footer-title").innerHTML =
         Musiques[currentMusic].Titre; // Affiche le titre
+        document.querySelector(".footer-toggle-icon").src = "images/music.png";
     } else {
       document.querySelector(".footer-title").innerHTML =
         Musiques[currentMusic].Artiste; // Affiche l'artiste
+        document.querySelector(".footer-toggle-icon").src = "images/artist.png";
     }
 
     toggle = !toggle;
@@ -292,8 +369,33 @@ function enter() {
       document.querySelector(".all-musique").innerHTML = listeMusiques;
       return;
       
+    }
 
+    // Photos
+    if (menuIcon == 3) {
+      currentScreen = 9;
+      document.querySelector(".menu").style.display = "none";
+      document.querySelector(".header").innerHTML = "Photos"; //TODO LANG
+      document.querySelector(".all-photos").style.display = "block";
+      document.querySelector(".scrollbar").style.display = "block";
+
+      Photos.sort((a, b) => a.Nom.localeCompare(b.Nom));
+      let listePhotos = "";
+      listePhotos +=
+        '<div class="photo-li hover-photo-li"  id="all-photo-li-0">' + '<img src="'+ Photos[0].Path+'" class="preview-photo-li"/>' +
+        truncatePhoto(Photos[0].Nom) + 
+        "</div>";
+      for (let i = 1; i < 5; i++) {
+        listePhotos +=
+          '<div class="photo-li"  id="all-photo-li-' +
+          i +
+          '">' + '<img src="'+ Photos[i].Path+'" class="preview-photo-li"/>' +
+          truncatePhoto(Photos[i].Nom) +
+          "</div>";
+      }
+      document.querySelector(".all-photos").innerHTML = listePhotos;
       return;
+
     }
     // Aléatoire-Complète
     if (menuIcon == 0) {
@@ -352,6 +454,7 @@ function enter() {
       let nbS = Math.floor(currentAudio.currentTime - nbMin * 60);
       document.querySelector(".footer-title").innerHTML =
         (nbMin < 10 ? "0" : "") + nbMin + ":" + (nbS < 10 ? "0" : "") + nbS;
+        document.querySelector(".footer-toggle-icon").style.display ="none";
       setTimeout(() => {
         currentScreen = 6;
       }, 300);
@@ -510,6 +613,7 @@ function musicPause() {
 function musicReset() {
   currentAudio.currentTime = 0;
   document.querySelector(".footer-title").innerHTML = "00:00";
+  document.querySelector(".footer-toggle-icon").style.display ="none";
   document.querySelector(".music-progress-bar").style.width = "0%";
 }
 
@@ -532,6 +636,15 @@ function back() {
     document.querySelector(".scrollbar").style.display = "none";
     return;
   }
+  // Photos > Accueil
+  if (currentScreen == 9) {
+    currentScreen = 0;
+    document.querySelector(".header").innerHTML = "Accueil"; //TODO LANG
+    document.querySelector(".menu").style.display = "flex";
+    document.querySelector(".all-photos").style.display = "none";
+    document.querySelector(".scrollbar").style.display = "none";
+    return;
+  }
   // Player > Accueil
   if (currentScreen == 6) {
     currentScreen = 0;
@@ -541,6 +654,8 @@ function back() {
 
     document.querySelector(".footer-title").innerHTML =
       Musiques[currentMusic].Titre;
+    document.querySelector(".footer-toggle-icon").style.display ="block";
+    document.querySelector(".footer-toggle-icon").src = "images/music.png";
 
     intervalManager(true);
 
@@ -555,6 +670,8 @@ function back() {
 
     document.querySelector(".footer-title").innerHTML =
       Musiques[currentMusic].Titre;
+      document.querySelector(".footer-toggle-icon").src = "images/music.png";
+      document.querySelector(".footer-toggle-icon").style.display ="block";
     document.querySelector(".all-musique").style.display = "block";
     document.querySelector(".scrollbar").style.display = "block";
 
@@ -673,6 +790,7 @@ function startTime() {
       let nbS = Math.floor(currentAudio.currentTime - nbMin * 60);
       document.querySelector(".footer-title").innerHTML =
         (nbMin < 10 ? "0" : "") + nbMin + ":" + (nbS < 10 ? "0" : "") + nbS;
+        document.querySelector(".footer-toggle-icon").style.display ="none";
 
       if (currentAudio.currentTime == currentAudio.duration) {
         currentMusic++;
@@ -697,6 +815,11 @@ function startTime() {
 
 function truncate(str) {
   return str.length > 20 ? str.slice(0, 19) + "…" : str;
+}
+
+function truncatePhoto(str) {
+  return str.length > 14 ? str.slice(0, 13) + "…" : str;
+
 }
 
 function truncateforFooter(str) {
