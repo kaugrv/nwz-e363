@@ -401,3 +401,25 @@ h3 {
   scrollbar-width: thin;
 
 }
+
+.music-data-icon {
+  width: 9px;
+}
+
+.battery {
+  animation: battery-flash 0.5s infinite steps(1, end);
+}
+
+@keyframes battery-flash {
+  0% {
+    opacity: 0%;
+  }
+
+  50% {
+    opacity: 100%;
+  }
+
+  100% { 
+    opacity: 0%;
+  }
+}
