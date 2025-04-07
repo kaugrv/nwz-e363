@@ -2,16 +2,16 @@
 - [X] FM : boucle FIP / Nostalgie / Radio Meuh  
 - [X] Ne pas lancer Lecture en cours si pas de lecture en cours  
 - [X] Liens > Linktree   
-- [ ] Liens > Changer icône  
+- [X] Liens > Changer icône  
 - [X] A propos > Petite fenêtre explicative 
-- [ ] A propos > Changer icône  
+- [X] A propos > Changer icône  
   
 - [X] Scrollbar Musiques  
   
 - [X] Musiques : ou enlever les catégories > passer direct à toutes les chansons
 - [X] Désactiver le bouton Option (ou en faire Easter Egg)  
   
-- [ ] Icônes Artiste, Album, Genre, Année  
+- [X] Icônes Artiste, Album, Genre, Année  
 - [ ] Icône lecture en cours en bas  
   
 - [X] Batterie = batterie de la machine  

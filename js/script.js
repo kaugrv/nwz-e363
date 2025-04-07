@@ -680,13 +680,13 @@ function setMusicInfos(n) {
   document.getElementById("titre").innerHTML =
     '<img src="images/5.png" alt="" class="" />' + truncate(Musiques[n].Titre);
   document.getElementById("artiste").innerHTML =
-    "X " + truncate(Musiques[n].Artiste);
+    '<img src="images/artist.png" class="music-data-icon"> ' + truncate(Musiques[n].Artiste);
   document.getElementById("album").innerHTML =
-    "X " + truncate(Musiques[n].Album);
+    '<img src="images/album.png" class="music-data-icon"> ' + truncate(Musiques[n].Album);
   document.getElementById("genre").innerHTML =
-    "X " + truncate(Musiques[n].Genre);
+    '<img src="images/genre.png" class="music-data-icon"> ' + truncate(Musiques[n].Genre);
   document.getElementById("annee").innerHTML =
-    "X " + truncate(Musiques[n].Annee);
+    '<img src="images/annee.png" class="music-data-icon"> ' + truncate(Musiques[n].Annee);
   document.getElementById("cover").src = Musiques[n].cover;
   document.querySelector(".music-count").innerHTML =
     n + 1 + "/" + Musiques.length;
