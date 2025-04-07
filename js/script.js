@@ -42,6 +42,34 @@ let nomsMenus = [
   "Lecture en cours",
 ];
 
+let nomsMenusEN = [
+  "Shuffle All",
+  "FM Radio", 
+  "Clock Display",
+  "Photos",
+  "Music",
+  "Videos",
+  "Links",
+  "About",
+  "Now Playing"
+]
+
+let textes = [
+  "Artiste",
+  "Album",
+  "Genre",
+  "Année",
+  "Tu as entre les mains mon lecteur mp4 Sony NWZ-E363 que j'ai eu au collège (~2012). Je l'ai mis à jour avec les chansons (et +) qui ont accompagné ma vie jusqu'à aujourd'hui (2025). J'aimerais qu'il survive à l'épreuve du temps. Contrairement à moi, il sera peut-être immortel. Oh, s'il te plaît, prends=en bien soin...<br> <br>- Wendy<br>"
+]
+
+let textesEN = [
+  "Artist",
+  "Album",
+  "Genre",
+  "Release Year",
+  "You are now holding my Sony NWZ-E363 mp4 player that I got in secondary school (around 2012). I've updated it with songs, and more, which have followed me to this day (2025). I want it to stand the test of time. Unlike me, it may become immortal. Please, please, take care of it. <br> <br>- Wendy<br>"
+]
+
 let menuIcon = 4;
 let musicLi = 0;
 
@@ -243,7 +271,7 @@ function enter() {
       // console.log(currentScreen)
       currentScreen = 5;
       document.querySelector(".menu").style.display = "none";
-      document.querySelector(".header").innerHTML = "Toutes les Chansons";
+      document.querySelector(".header").innerHTML = "Toutes les Chansons"; //TODO LANG
       document.querySelector(".all-musique").style.display = "block";
       document.querySelector(".scrollbar").style.display = "block";
 
@@ -277,7 +305,7 @@ function enter() {
       setMusicInfos(currentMusic);
       document.querySelector(".musique").style.display = "none";
       document.querySelector(".music-player").style.display = "block";
-      document.querySelector(".header").innerHTML = nomsMenus[4];
+      document.querySelector(".header").innerHTML = nomsMenus[4]; //TODO LANG
       document.querySelector(".footer-mode").style.display = "block";
       let nbMin = Math.floor(currentAudio.currentTime / 60);
       let nbS = Math.floor(currentAudio.currentTime - nbMin * 60);
@@ -319,7 +347,7 @@ function enter() {
       document.querySelector(".footer-title").style.animation = "none";
       document.querySelector(".musique").style.display = "none";
       document.querySelector(".music-player").style.display = "block";
-      document.querySelector(".header").innerHTML = nomsMenus[4];
+      document.querySelector(".header").innerHTML = nomsMenus[4]; //TODO LANG
       let nbMin = Math.floor(currentAudio.currentTime / 60);
       let nbS = Math.floor(currentAudio.currentTime - nbMin * 60);
       document.querySelector(".footer-title").innerHTML =
@@ -371,7 +399,7 @@ function enter() {
   //   if (musicLi == 0) {
   //     currentScreen = 5;
   //     document.querySelector(".musique").style.display = "none";
-  //     document.querySelector(".header").innerHTML = "Toutes les Chansons";
+  //     document.querySelector(".header").innerHTML = "Toutes les Chansons"; //TODO LANG
   //     document.querySelector(".all-musique").style.display = "block";
   //     document.querySelector(".scrollbar").style.display = "block";
 
@@ -405,7 +433,7 @@ function enter() {
     document.querySelector(".footer-mode").innerHTML = "";
     document.querySelector(".musique").style.display = "none";
     document.querySelector(".music-player").style.display = "block";
-    document.querySelector(".header").innerHTML = nomsMenus[4];
+    document.querySelector(".header").innerHTML = nomsMenus[4]; //TODO LANG
     document.querySelector(".footer-mode").style.display = "block";
     document.querySelector(".scrollbar").style.display = "none";
 
@@ -490,7 +518,7 @@ function back() {
   // Musique > Accueil
   // if (currentScreen == 4) {
   //   currentScreen = 0;
-  //   document.querySelector(".header").innerHTML = "Accueil";
+  //   document.querySelector(".header").innerHTML = "Accueil"; //TODO LANG
   //   document.querySelector(".musique").style.display = "none";
   //   document.querySelector(".menu").style.display = "flex";
   //   return;
@@ -498,7 +526,7 @@ function back() {
   // Toutes les Chansons > Accueil
   if (currentScreen == 5) {
     currentScreen = 0;
-    document.querySelector(".header").innerHTML = "Accueil";
+    document.querySelector(".header").innerHTML = "Accueil"; //TODO LANG
     document.querySelector(".menu").style.display = "flex";
     document.querySelector(".all-musique").style.display = "none";
     document.querySelector(".scrollbar").style.display = "none";
@@ -507,7 +535,7 @@ function back() {
   // Player > Accueil
   if (currentScreen == 6) {
     currentScreen = 0;
-    document.querySelector(".header").innerHTML = "Accueil";
+    document.querySelector(".header").innerHTML = "Accueil"; //TODO LANG
     document.querySelector(".music-player").style.display = "none";
     document.querySelector(".menu").style.display = "flex";
 
@@ -522,7 +550,7 @@ function back() {
   // Player > Toutes les Chansons
   if (currentScreen == 7) {
     currentScreen = 5;
-    document.querySelector(".header").innerHTML = "Toutes les Chansons";
+    document.querySelector(".header").innerHTML = "Toutes les Chansons"; //TODO LANG
     document.querySelector(".music-player").style.display = "none";
 
     document.querySelector(".footer-title").innerHTML =
@@ -551,7 +579,7 @@ function back() {
   //   document.querySelector(".all-musique").style.display = "none";
   //   document.querySelector(".scrollbar").style.display = "none";
 
-  //   document.querySelector(".header").innerHTML = nomsMenus[4];
+  //   document.querySelector(".header").innerHTML = nomsMenus[4]; //TODO LANG
   //   return;
   // }
 

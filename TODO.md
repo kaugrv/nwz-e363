@@ -12,7 +12,8 @@
 - [X] Désactiver le bouton Option (ou en faire Easter Egg)  
   
 - [X] Icônes Artiste, Album, Genre, Année  
-- [ ] Icône lecture en cours en bas  
+
+- [ ] Gestion FR / EN (//TODO LANG)
   
 - [X] Batterie = batterie de la machine  
   
