@@ -700,3 +700,39 @@ function setMusicInfos(n) {
   }
 }
 
+
+navigator.getBattery().then((battery) => {
+  function updateAllBatteryInfo() {
+    updateLevelInfo();
+  }
+  updateAllBatteryInfo();
+
+  battery.addEventListener("levelchange", () => {
+    updateLevelInfo();
+  });
+
+  function updateLevelInfo() {
+    let batteryImg = document.querySelector(".battery");
+
+    if (battery.level*100 <= 100 && battery.level*100 > 75) {
+      batteryImg.src = "../images/batt1.png"
+      batteryImg.style.animation = 'none';
+    }
+    if (battery.level*100 <= 75 && battery.level*100 > 50) {
+      batteryImg.src = "../images/batt2.png"
+      batteryImg.style.animation = 'none';
+    }
+    if (battery.level*100 <= 50 && battery.level*100 > 25) {
+      batteryImg.src = "../images/batt3.png"
+      batteryImg.style.animation = 'none';
+    }
+    if (battery.level*100 <= 25 && battery.level*100 > 15) {
+      batteryImg.src = "../images/batt4.png"
+      batteryImg.style.animation = 'none';
+    }
+    if (battery.level*100 <= 15) {
+      batteryImg.src = "../images/batt4.png"
+      batteryImg.style.animation = 'battery-flash 0.5s infinite steps(1, end)';
+    }
+  }
+});

@@ -14,7 +14,7 @@
 - [ ] Icônes Artiste, Album, Genre, Année  
 - [ ] Icône lecture en cours en bas  
   
-- [ ] Batterie = batterie de la machine  
+- [X] Batterie = batterie de la machine  
   
 - [ ] Photos  
     - [ ] Lumon Meeting  

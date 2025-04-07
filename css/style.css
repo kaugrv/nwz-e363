@@ -105,8 +105,7 @@ body {
 }
 
 .battery {
-  height: 12px;
-  filter: invert();
+  height: 9px;
 }
 
 .menu {
