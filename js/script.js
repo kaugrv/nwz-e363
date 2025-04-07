@@ -78,7 +78,7 @@ let textes = [
   "Album",
   "Genre",
   "Année",
-  "Tu as entre les mains mon lecteur mp4 Sony NWZ-E363 que j'ai eu au collège (~2012). Je l'ai mis à jour avec les chansons (et +) qui ont accompagné ma vie jusqu'à aujourd'hui (2025). J'aimerais qu'il survive à l'épreuve du temps. Contrairement à moi, il sera peut-être immortel. Oh, s'il te plaît, prends=en bien soin...<br> <br>- Wendy<br>"
+  "Tu as entre les mains mon lecteur mp4 Sony NWZ-E363 que j'ai eu au collège (~2012). Je l'ai mis à jour avec les chansons (et +) qui ont accompagné ma vie jusqu'à aujourd'hui (2025). J'aimerais qu'il survive à l'épreuve du temps. Contrairement à moi, il sera peut-être immortel. Oh, s'il te plaît, prends-en bien soin...<br> <br>- Wendy<br>"
 ]
 
 let textesEN = [
