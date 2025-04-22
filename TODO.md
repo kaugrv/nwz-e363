@@ -17,20 +17,17 @@
   
 - [X] Batterie = batterie de la machine  
   
-- [ ] Photos  
+- [X] Photos  
     - [X] Lumon Meeting  
-    - [ ] Me and the dog (Nouka) / Me and the dog 2 (Lexie)  
-    - [ ] L'Amour au pouvoir   
+    - [X] Me and the dog (Nouka) / Me and the dog 2 (Lexie)  
+    - [X] L'Amour au pouvoir   
     - [X] Micro-ondes ESIEE  
-    - [ ] Baby me + Ratchet (ratchet.jpg)  
+    - [X] Baby me + Ratchet (ratchet.jpg)  
     - [ ] Hugging Ratchet (ratchet.png)  
     - [ ] Autumn Rouyn  
-    - [ ] Winter Rouyn  
-    - [ ] 206 Fan Club  
+    - [X] Winter Rouyn  
+    - [X] 206 Fan Club  
     - [X] Permis.pdf  
-    - [ ] Caddie qui brûle  
+    - [X] Caddie qui brûle  
   
 - [ ] Vidéos  
-    - [ ] Opening Severance  
-    - [ ] Concerts  
-    - [ ] Diplôme

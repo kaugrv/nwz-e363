@@ -295,7 +295,7 @@ function allPhotosNavigate(direction) {
         '<div class="photo-li"  id="all-photo-li-' +
         i +
         '">' + '<img src="'+ Photos[i+allPhotoPage].Path+'" class="preview-photo-li"/>' +
-        truncatePhoto(Photos[i+allPhotoPage].Nom) +
+        truncatePhoto(Photos[i+allPhotoPage].Nom+"."+Photos[i+allPhotoPage].Extension) +
         "</div>";
     }
     document.querySelector(".all-photos").innerHTML = listePhotos;
@@ -383,14 +383,14 @@ function enter() {
       let listePhotos = "";
       listePhotos +=
         '<div class="photo-li hover-photo-li"  id="all-photo-li-0">' + '<img src="'+ Photos[0].Path+'" class="preview-photo-li"/>' +
-        truncatePhoto(Photos[0].Nom) + 
+        truncatePhoto(Photos[0].Nom+"."+Photos[0].Extension) + 
         "</div>";
       for (let i = 1; i < 5; i++) {
         listePhotos +=
           '<div class="photo-li"  id="all-photo-li-' +
           i +
           '">' + '<img src="'+ Photos[i].Path+'" class="preview-photo-li"/>' +
-          truncatePhoto(Photos[i].Nom) +
+          truncatePhoto(Photos[i+allPhotoPage].Nom+"."+Photos[i+allPhotoPage].Extension) +
           "</div>";
       }
       document.querySelector(".all-photos").innerHTML = listePhotos;
@@ -473,6 +473,11 @@ function enter() {
 
       radio = (radio+1)%3;
       return;
+    }
+
+    //  Video > Youtoube
+    if (menuIcon == 5) {
+      open("https://www.youtube.com/@WendyCGrant/playlists")
     }
 
     //A propos 
@@ -576,6 +581,22 @@ function enter() {
     return;
   }
 
+  if (currentScreen == 9) {
+    currentScreen = 10;
+    document.querySelector(".all-photos").style.display = "none";
+    document.querySelector(".header").innerHTML = "Photo"; //TODO LANG
+    document.querySelector(".scrollbar").style.display = "none";
+    document.querySelector(".photo-player").style.display = "flex";
+
+    console.log(Photos[allPhotoLi+allPhotoPage].Nom)
+    currentPhoto = allPhotoLi+allPhotoPage;
+
+    setPhotoInfos(currentPhoto)
+
+
+
+  }
+
   // Si on est déjà sur l'écran de lecture (currentScreen == 6), on gère la lecture/pauses
   if (currentScreen == 6 || currentScreen == 7) {
     setTimeout(() => {
@@ -645,6 +666,15 @@ function back() {
     document.querySelector(".scrollbar").style.display = "none";
     return;
   }
+
+  // Photo-player > Photos 
+  if (currentScreen == 10) {
+    currentScreen = 9;
+    document.querySelector(".header").innerHTML = "Photos"; //TODO LANG
+    document.querySelector(".photo-player").style.display = "none";
+    document.querySelector(".all-photos").style.display = "block";
+    document.querySelector(".scrollbar").style.display = "block";
+  }
   // Player > Accueil
   if (currentScreen == 6) {
     currentScreen = 0;
@@ -710,21 +740,21 @@ function back() {
 // Skip ou previous song : clavier
 document.addEventListener("keydown", function (event) {
   if (event.key == "ArrowLeft") {
-    musicQueue("previous");
+    Queue("previous");
   } else if (event.key == "ArrowRight") {
-    musicQueue("next");
+    Queue("next");
   }
 });
 
 // Skip ou previous song : boutons
 document
   .querySelector(".left")
-  .addEventListener("click", (e) => musicQueue("previous"));
+  .addEventListener("click", (e) => Queue("previous"));
 document
   .querySelector(".right")
-  .addEventListener("mouseup", (e) => musicQueue("next"));
+  .addEventListener("mouseup", (e) => Queue("next"));
 
-function musicQueue(sens) {
+function Queue(sens) {
   if (currentScreen == 6 || currentScreen == 7) {
     // Previous
     if (sens == "previous") {
@@ -761,6 +791,36 @@ function musicQueue(sens) {
       musicReset();
       currentAudio.pause();
     }
+  }
+
+  if (currentScreen == 10) {
+    if (sens == "previous") {
+        currentPhoto--;
+        if (currentPhoto < 0) {
+          currentPhoto = Photos.length - 1;
+        }
+      }
+
+    // Next
+    if (sens == "next") {
+      currentPhoto++;
+      if (currentPhoto > Photos.length - 1) {
+        currentPhoto = 0;
+      }
+    }
+
+    setPhotoInfos(currentPhoto);
+  }
+}
+
+function setPhotoInfos(n) {
+  document.querySelector(".titre-photo").innerHTML = Photos[n].Nom;
+  document.querySelector(".current-photo").src =  Photos[n].Path;
+  if (document.querySelector(".titre-photo").innerHTML.length > 15) {
+    document.querySelector(".titre-photo").style.animation =
+      "defilement-rtl 20s infinite linear";
+  } else {
+    document.querySelector(".titre-photo").style.animation = "none";
   }
 }
 
