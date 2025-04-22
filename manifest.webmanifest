@@ -1,0 +1,15 @@
+{
+    "name": "Sony EWZ-E363",
+    "short_name": "MP4",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "",
+    "icons": [
+      {
+        "src": "images/logo.png",
+        "sizes": "200x200",
+        "type": "image/png"
+      }
+    ]
+  }
