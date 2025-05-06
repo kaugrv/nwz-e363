@@ -12,8 +12,7 @@ body {
     display: flex;
     justify-content: center;
     margin: 20px;
-    scale: 1.5;
-    margin-top: 20vh;
+    margin-top: 10vh;
   }
 
 }
@@ -40,18 +39,20 @@ body {
   color: white;
   background: linear-gradient(black, black, black, #140756);
   border: solid black 1px;
-  animation: flicking  0.1s infinite;
+  animation: flicking 0.2s infinite;
 }
 
 @keyframes flicking {
   0% {
-    filter: brightness(1.05);
+    filter: brightness(1.04);
   }
+
   50% {
     filter: brightness(1);
   }
+
   100% {
-    filter: brightness(1.05);
+    filter: brightness(1.04);
   }
 }
 
@@ -390,7 +391,7 @@ h3 {
   width: 4px;
   height: 10%;
   background-color: rgb(255, 255, 255);
-  
+
 }
 
 .message-voile {
@@ -411,9 +412,9 @@ h3 {
   border: solid 2px white;
   position: absolute;
   height: 60%;
-  text-align:center;
+  text-align: center;
   top: 20px;
-  overflow-y:scroll;
+  overflow-y: scroll;
   scrollbar-width: thin;
 
 }
@@ -423,7 +424,7 @@ h3 {
 }
 
 .battery {
-  animation: battery-flash 0.5s infinite steps(1, end);
+  animation: none
 }
 
 @keyframes battery-flash {
@@ -435,7 +436,7 @@ h3 {
     opacity: 100%;
   }
 
-  100% { 
+  100% {
     opacity: 0%;
   }
 }
@@ -472,14 +473,15 @@ h3 {
 
 .photo-player {
   background-color: #000000;
-  height: 100%;
   width: 100%;
   position: absolute;
   top: 0;
-  
   justify-content: flex-start;
 
+  height: 100%;
   display: none;
+
+
 }
 
 
@@ -490,15 +492,15 @@ h3 {
   top: 40px;
   width: 100%;
 
-  
+
 }
+
 .current-photo {
-  width: fit-content;
   max-width: 100%;
-  max-height: 120px;
   position: absolute;
-  
-  
+  max-height: 120px;
+
+
 }
 
 
@@ -513,7 +515,7 @@ h3 {
 .ligne-titre-photo {
   display: flex;
   position: absolute;
-  top:20px;
+  top: 20px;
 }
 
 .photo-icon {
@@ -531,7 +533,7 @@ h3 {
 }
 
 .titre-photo {
-  color: white;  
+  color: white;
   position: relative;
   text-align: left;
   animation: defilement-rtl 20s infinite linear;
@@ -540,6 +542,3 @@ h3 {
   text-wrap-mode: nowrap;
   width: fit-content;
 }
-
-
-

@@ -12,14 +12,14 @@ fetch("./data/musiques.json")
   });
 
 fetch("./data/photos.json")
-.then((response) => response.json())
-.then((data) => {
-  Photos = data.sort((a, b) => a.Nom.localeCompare(b.Nom));
+  .then((response) => response.json())
+  .then((data) => {
+    Photos = data.sort((a, b) => a.Nom.localeCompare(b.Nom));
 
-})
-.catch((error) => {
-  console.error("Erreur lors de la récupération des photos:", error);
-});
+  })
+  .catch((error) => {
+    console.error("Erreur lors de la récupération des photos:", error);
+  });
 
 
 
@@ -63,7 +63,7 @@ let nomsMenus = [
 
 let nomsMenusEN = [
   "Shuffle All",
-  "FM Radio", 
+  "FM Radio",
   "Clock Display",
   "Photos",
   "Music",
@@ -101,7 +101,7 @@ let currentAudio = document.getElementById("audio");
 
 let currentPhoto = 0;
 let allPhotoLi = 0;
-let allPhotoPage =  0;
+let allPhotoPage = 0;
 
 let radio = 0;
 
@@ -205,12 +205,12 @@ function allMusicNavigate(direction) {
   switch (direction) {
     case "up":
       allMusicLi -= 1;
-      document.querySelector(".scrollbar-body").style.top = (allMusicLi+allMusicpage)/Musiques.length*89 + "%";
+      document.querySelector(".scrollbar-body").style.top = (allMusicLi + allMusicpage) / Musiques.length * 89 + "%";
 
       break;
     case "down":
       allMusicLi += 1;
-      document.querySelector(".scrollbar-body").style.top = (allMusicLi+allMusicpage)/Musiques.length*89 + "%";
+      document.querySelector(".scrollbar-body").style.top = (allMusicLi + allMusicpage) / Musiques.length * 89 + "%";
       break;
     default:
       break;
@@ -220,7 +220,7 @@ function allMusicNavigate(direction) {
     allMusicLi = 7;
     allMusicpage++;
     if (allMusicpage + allMusicLi == Musiques.length) {
-      document.querySelector(".scrollbar-body").style.top ="0%";
+      document.querySelector(".scrollbar-body").style.top = "0%";
       allMusicLi = 0;
       allMusicpage = 0;
     }
@@ -230,7 +230,7 @@ function allMusicNavigate(direction) {
     allMusicLi = 0;
     allMusicpage--;
     if (allMusicpage == -1) {
-      document.querySelector(".scrollbar-body").style.top ="89%";
+      document.querySelector(".scrollbar-body").style.top = "89%";
       allMusicLi = 7;
       allMusicpage = Musiques.length - 8;
     }
@@ -254,15 +254,15 @@ function allMusicNavigate(direction) {
 // Navigue dans la liste de toutes les photos
 function allPhotosNavigate(direction) {
   document.getElementById("all-photo-li-" + allPhotoLi).className =
-  "photo-li";
+    "photo-li";
   switch (direction) {
     case "up":
       allPhotoLi -= 1;
-      document.querySelector(".scrollbar-body").style.top = (allPhotoLi+allPhotoPage)/Photos.length*89 + "%";
+      document.querySelector(".scrollbar-body").style.top = (allPhotoLi + allPhotoPage) / Photos.length * 89 + "%";
       break;
     case "down":
       allPhotoLi += 1;
-      document.querySelector(".scrollbar-body").style.top = (allPhotoLi+allPhotoPage)/Photos.length*89 + "%";
+      document.querySelector(".scrollbar-body").style.top = (allPhotoLi + allPhotoPage) / Photos.length * 89 + "%";
       break;
 
     default:
@@ -273,7 +273,7 @@ function allPhotosNavigate(direction) {
     allPhotoLi = 4;
     allPhotoPage++;
     if (allPhotoPage + allPhotoLi == Photos.length) {
-      document.querySelector(".scrollbar-body").style.top ="0%";
+      document.querySelector(".scrollbar-body").style.top = "0%";
       allPhotoLi = 0;
       allPhotoPage = 0;
     }
@@ -283,7 +283,7 @@ function allPhotosNavigate(direction) {
     allPhotoLi = 0;
     allPhotoPage--;
     if (allPhotoPage == -1) {
-      document.querySelector(".scrollbar-body").style.top ="89%";
+      document.querySelector(".scrollbar-body").style.top = "89%";
       allPhotoLi = 4;
       allPhotoPage = Photos.length - 5;
     }
@@ -291,16 +291,16 @@ function allPhotosNavigate(direction) {
 
   let listePhotos = "";
   for (let i = 0; i < 5; i++) {
-      listePhotos +=
-        '<div class="photo-li"  id="all-photo-li-' +
-        i +
-        '">' + '<img src="'+ Photos[i+allPhotoPage].Path+'" class="preview-photo-li"/>' +
-        truncatePhoto(Photos[i+allPhotoPage].Nom+"."+Photos[i+allPhotoPage].Extension) +
-        "</div>";
-    }
-    document.querySelector(".all-photos").innerHTML = listePhotos;
-    document.getElementById("all-photo-li-" + allPhotoLi).className =
-      "photo-li hover-photo-li";
+    listePhotos +=
+      '<div class="photo-li"  id="all-photo-li-' +
+      i +
+      '">' + '<img src="' + Photos[i + allPhotoPage].Path + '" class="preview-photo-li"/>' +
+      truncatePhoto(Photos[i + allPhotoPage].Nom + "." + Photos[i + allPhotoPage].Extension) +
+      "</div>";
+  }
+  document.querySelector(".all-photos").innerHTML = listePhotos;
+  document.getElementById("all-photo-li-" + allPhotoLi).className =
+    "photo-li hover-photo-li";
 }
 
 let toggle = true;
@@ -310,11 +310,11 @@ function alterne() {
     if (toggle) {
       document.querySelector(".footer-title").innerHTML =
         Musiques[currentMusic].Titre; // Affiche le titre
-        document.querySelector(".footer-toggle-icon").src = "images/music.png";
+      document.querySelector(".footer-toggle-icon").src = "images/music.png";
     } else {
       document.querySelector(".footer-title").innerHTML =
         Musiques[currentMusic].Artiste; // Affiche l'artiste
-        document.querySelector(".footer-toggle-icon").src = "images/artist.png";
+      document.querySelector(".footer-toggle-icon").src = "images/artist.png";
     }
 
     toggle = !toggle;
@@ -368,7 +368,7 @@ function enter() {
       }
       document.querySelector(".all-musique").innerHTML = listeMusiques;
       return;
-      
+
     }
 
     // Photos
@@ -382,15 +382,15 @@ function enter() {
       Photos.sort((a, b) => a.Nom.localeCompare(b.Nom));
       let listePhotos = "";
       listePhotos +=
-        '<div class="photo-li hover-photo-li"  id="all-photo-li-0">' + '<img src="'+ Photos[0].Path+'" class="preview-photo-li"/>' +
-        truncatePhoto(Photos[0].Nom+"."+Photos[0].Extension) + 
+        '<div class="photo-li hover-photo-li"  id="all-photo-li-0">' + '<img src="' + Photos[0].Path + '" class="preview-photo-li"/>' +
+        truncatePhoto(Photos[0].Nom + "." + Photos[0].Extension) +
         "</div>";
       for (let i = 1; i < 5; i++) {
         listePhotos +=
           '<div class="photo-li"  id="all-photo-li-' +
           i +
-          '">' + '<img src="'+ Photos[i].Path+'" class="preview-photo-li"/>' +
-          truncatePhoto(Photos[i+allPhotoPage].Nom+"."+Photos[i+allPhotoPage].Extension) +
+          '">' + '<img src="' + Photos[i].Path + '" class="preview-photo-li"/>' +
+          truncatePhoto(Photos[i + allPhotoPage].Nom + "." + Photos[i + allPhotoPage].Extension) +
           "</div>";
       }
       document.querySelector(".all-photos").innerHTML = listePhotos;
@@ -454,7 +454,7 @@ function enter() {
       let nbS = Math.floor(currentAudio.currentTime - nbMin * 60);
       document.querySelector(".footer-title").innerHTML =
         (nbMin < 10 ? "0" : "") + nbMin + ":" + (nbS < 10 ? "0" : "") + nbS;
-        document.querySelector(".footer-toggle-icon").style.display ="none";
+      document.querySelector(".footer-toggle-icon").style.display = "none";
       setTimeout(() => {
         currentScreen = 6;
       }, 300);
@@ -467,11 +467,11 @@ function enter() {
 
     //Radio FM
     if (menuIcon == 1) {
-      if (radio==0) open("https://www.radiomeuh.com/");
-      else if (radio==1) open("https://www.nostalgie.fr/");
-      else if (radio==2) open("https://www.radiofrance.fr/fip");
+      if (radio == 0) open("https://www.radiomeuh.com/");
+      else if (radio == 1) open("https://www.nostalgie.fr/");
+      else if (radio == 2) open("https://www.radiofrance.fr/fip");
 
-      radio = (radio+1)%3;
+      radio = (radio + 1) % 3;
       return;
     }
 
@@ -481,7 +481,7 @@ function enter() {
     }
 
     //A propos 
-    if  (menuIcon == 7) {
+    if (menuIcon == 7) {
       currentScreen = 8;
       document.querySelector(".message-voile").style.display = "block";
     }
@@ -533,7 +533,7 @@ function enter() {
 
   if (currentScreen == 5) {
     currentScreen = 7;
-    currentMusic = allMusicLi +allMusicpage;
+    currentMusic = allMusicLi + allMusicpage;
     firstMusicPlayed = true;
     setMusicInfos(currentMusic);
     intervalManager(false);
@@ -588,8 +588,8 @@ function enter() {
     document.querySelector(".scrollbar").style.display = "none";
     document.querySelector(".photo-player").style.display = "flex";
 
-    console.log(Photos[allPhotoLi+allPhotoPage].Nom)
-    currentPhoto = allPhotoLi+allPhotoPage;
+    console.log(Photos[allPhotoLi + allPhotoPage].Nom)
+    currentPhoto = allPhotoLi + allPhotoPage;
 
     setPhotoInfos(currentPhoto)
 
@@ -634,7 +634,7 @@ function musicPause() {
 function musicReset() {
   currentAudio.currentTime = 0;
   document.querySelector(".footer-title").innerHTML = "00:00";
-  document.querySelector(".footer-toggle-icon").style.display ="none";
+  document.querySelector(".footer-toggle-icon").style.display = "none";
   document.querySelector(".music-progress-bar").style.width = "0%";
 }
 
@@ -684,7 +684,7 @@ function back() {
 
     document.querySelector(".footer-title").innerHTML =
       Musiques[currentMusic].Titre;
-    document.querySelector(".footer-toggle-icon").style.display ="block";
+    document.querySelector(".footer-toggle-icon").style.display = "block";
     document.querySelector(".footer-toggle-icon").src = "images/music.png";
 
     intervalManager(true);
@@ -700,8 +700,8 @@ function back() {
 
     document.querySelector(".footer-title").innerHTML =
       Musiques[currentMusic].Titre;
-      document.querySelector(".footer-toggle-icon").src = "images/music.png";
-      document.querySelector(".footer-toggle-icon").style.display ="block";
+    document.querySelector(".footer-toggle-icon").src = "images/music.png";
+    document.querySelector(".footer-toggle-icon").style.display = "block";
     document.querySelector(".all-musique").style.display = "block";
     document.querySelector(".scrollbar").style.display = "block";
 
@@ -783,7 +783,7 @@ function Queue(sens) {
       musicReset();
       currentAudio
         .play()
-        .then(() => {})
+        .then(() => { })
         .catch((error) => {
           console.error("Erreur de lecture audio", error);
         });
@@ -795,11 +795,11 @@ function Queue(sens) {
 
   if (currentScreen == 10) {
     if (sens == "previous") {
-        currentPhoto--;
-        if (currentPhoto < 0) {
-          currentPhoto = Photos.length - 1;
-        }
+      currentPhoto--;
+      if (currentPhoto < 0) {
+        currentPhoto = Photos.length - 1;
       }
+    }
 
     // Next
     if (sens == "next") {
@@ -815,7 +815,7 @@ function Queue(sens) {
 
 function setPhotoInfos(n) {
   document.querySelector(".titre-photo").innerHTML = Photos[n].Nom;
-  document.querySelector(".current-photo").src =  Photos[n].Path;
+  document.querySelector(".current-photo").src = Photos[n].Path;
   if (document.querySelector(".titre-photo").innerHTML.length > 15) {
     document.querySelector(".titre-photo").style.animation =
       "defilement-rtl 20s infinite linear";
@@ -850,7 +850,7 @@ function startTime() {
       let nbS = Math.floor(currentAudio.currentTime - nbMin * 60);
       document.querySelector(".footer-title").innerHTML =
         (nbMin < 10 ? "0" : "") + nbMin + ":" + (nbS < 10 ? "0" : "") + nbS;
-        document.querySelector(".footer-toggle-icon").style.display ="none";
+      document.querySelector(".footer-toggle-icon").style.display = "none";
 
       if (currentAudio.currentTime == currentAudio.duration) {
         currentMusic++;
@@ -862,7 +862,7 @@ function startTime() {
         musicReset();
         currentAudio
           .play()
-          .then(() => {})
+          .then(() => { })
           .catch((error) => {
             console.error("Erreur de lecture audio", error);
           });
@@ -912,38 +912,31 @@ function setMusicInfos(n) {
 }
 
 
-navigator.getBattery().then((battery) => {
-  function updateAllBatteryInfo() {
-    updateLevelInfo();
+
+function setBatteryLvl(battery) {
+  let batteryImg = document.querySelector(".battery");
+  document.querySelector("body").innerHTML = "5";
+
+  if (battery.level * 100 <= 100 && battery.level * 100 > 75) {
+    batteryImg.src = "../images/batt1.png"
+    batteryImg.style.animation = 'none';
   }
-  updateAllBatteryInfo();
-
-  battery.addEventListener("levelchange", () => {
-    updateLevelInfo();
-  });
-
-  function updateLevelInfo() {
-    let batteryImg = document.querySelector(".battery");
-
-    if (battery.level*100 <= 100 && battery.level*100 > 75) {
-      batteryImg.src = "../images/batt1.png"
-      batteryImg.style.animation = 'none';
-    }
-    if (battery.level*100 <= 75 && battery.level*100 > 50) {
-      batteryImg.src = "../images/batt2.png"
-      batteryImg.style.animation = 'none';
-    }
-    if (battery.level*100 <= 50 && battery.level*100 > 25) {
-      batteryImg.src = "../images/batt3.png"
-      batteryImg.style.animation = 'none';
-    }
-    if (battery.level*100 <= 25 && battery.level*100 > 15) {
-      batteryImg.src = "../images/batt4.png"
-      batteryImg.style.animation = 'none';
-    }
-    if (battery.level*100 <= 15) {
-      batteryImg.src = "../images/batt4.png"
-      batteryImg.style.animation = 'battery-flash 0.5s infinite steps(1, end)';
-    }
+  if (battery.level * 100 <= 75 && battery.level * 100 > 50) {
+    batteryImg.src = "../images/batt2.png"
+    batteryImg.style.animation = 'none';
   }
-});
+  if (battery.level * 100 <= 50 && battery.level * 100 > 25) {
+    batteryImg.src = "../images/batt3.png"
+    batteryImg.style.animation = 'none';
+  }
+  if (battery.level * 100 <= 25 && battery.level * 100 > 15) {
+    batteryImg.src = "../images/batt4.png"
+    batteryImg.style.animation = 'none';
+  }
+  if (battery.level * 100 <= 15) {
+    batteryImg.src = "../images/batt4.png"
+    batteryImg.style.animation = 'battery-flash 0.5s infinite steps(1, end)';
+  }
+}
+
+

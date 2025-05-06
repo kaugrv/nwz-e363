@@ -5,77 +5,73 @@
     "Path": "photos/lumon.jpg"
   },
   {
-    "Nom":"bzzzzzzzzzzzzzzzzzzzzzzzzzz",
-    "Extension":"png",
-    "Path":"photos/bzz.jpg"
+    "Nom": "bzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "Extension": "png",
+    "Path": "photos/bzz.jpg"
   },
   {
-    "Nom":"206FanClub",
-    "Extension":"jpg",
-    "Path":"photos/206fanclub.jpg"
+    "Nom": "206FanClub",
+    "Extension": "jpg",
+    "Path": "photos/206fanclub.jpg"
   },
   {
-    "Nom":"Ratchet",
-    "Extension":"jpg",
-    "Path":"photos/ratchet1.jpg"
+    "Nom": "Ratchet",
+    "Extension": "jpg",
+    "Path": "photos/ratchet1.jpg"
   },
   {
-    "Nom":"Ratchet",
-    "Extension":"png",
-    "Path":"photos/ratchet2.jpg"
+    "Nom": "Ratchet",
+    "Extension": "png",
+    "Path": "photos/ratchet2.jpg"
   },
   {
-    "Nom":"Permis",
-    "Extension":"pdf",
-    "Path":"photos/permis.jpg"
+    "Nom": "Permis",
+    "Extension": "pdf",
+    "Path": "photos/permis.jpg"
   },
   {
-    "Nom":"Me and Nouka",
-    "Extension":"raw",
-    "Path":"photos/nouka.jpg"
+    "Nom": "Me and Nouka",
+    "Extension": "raw",
+    "Path": "photos/nouka.jpg"
   },
   {
-    "Nom":"feu1",
-    "Extension":"jpg",
-    "Path":"photos/burn1.jpg"
+    "Nom": "feu1",
+    "Extension": "jpg",
+    "Path": "photos/burn1.jpg"
   },
   {
-    "Nom":"feu2",
-    "Extension":"jpg",
-    "Path":"photos/burn2.jpg"
+    "Nom": "feu2",
+    "Extension": "jpg",
+    "Path": "photos/burn2.jpg"
   },
   {
-    "Nom":"Me and Lexie",
-    "Extension":"raw",
-    "Path":"photos/lexie.jpg"
+    "Nom": "Me and Lexie",
+    "Extension": "raw",
+    "Path": "photos/lexie.jpg"
   },
   {
-    "Nom":"Québec",
-    "Extension":"png",
-    "Path":"photos/quebec.jpg"
+    "Nom": "Québec",
+    "Extension": "png",
+    "Path": "photos/quebec.jpg"
   },
   {
-    "Nom":"bizzzzzzz",
-    "Extension":"jpg",
-    "Path":"photos/biz.jpg"
+    "Nom": "bizzzzzzz",
+    "Extension": "jpg",
+    "Path": "photos/biz.jpg"
   },
   {
-    "Nom":"how fish is made",
-    "Extension":"jpg",
-    "Path":"photos/fish.jpg"
+    "Nom": "how fish is made",
+    "Extension": "jpg",
+    "Path": "photos/fish.jpg"
   },
   {
-    "Nom":"Akaura",
-    "Extension":"jpg",
-    "Path":"photos/akaura.jpg"
+    "Nom": "Akaura",
+    "Extension": "jpg",
+    "Path": "photos/akaura.jpg"
   },
   {
-    "Nom":"l'Amour au Pouvoir !",
-    "Extension":"png",
-    "Path":"photos/amour.jpg"
+    "Nom": "l'Amour au Pouvoir !",
+    "Extension": "png",
+    "Path": "photos/amour.jpg"
   }
-
-
-
-
 ]

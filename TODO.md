@@ -13,7 +13,7 @@
   
 - [X] Icônes Artiste, Album, Genre, Année  
 
-- [ ] Gestion FR / EN (//TODO LANG)
+- [ ] Gestion FR / EN (// TODO LANG)
   
 - [X] Batterie = batterie de la machine  
   
@@ -30,4 +30,4 @@
     - [X] Permis.pdf  
     - [X] Caddie qui brûle  
   
-- [ ] Vidéos  
+- [X] Vidéos  
