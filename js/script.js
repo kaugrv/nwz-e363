@@ -295,7 +295,7 @@ function allPhotosNavigate(direction) {
       '<div class="photo-li"  id="all-photo-li-' +
       i +
       '">' + '<img src="' + Photos[i + allPhotoPage].Path + '" class="preview-photo-li"/>' +
-      truncatePhoto(Photos[i + allPhotoPage].Nom + "." + Photos[i + allPhotoPage].Extension) +
+      truncatePhoto(Photos[i + allPhotoPage].Nom) +
       "</div>";
   }
   document.querySelector(".all-photos").innerHTML = listePhotos;
@@ -383,14 +383,14 @@ function enter() {
       let listePhotos = "";
       listePhotos +=
         '<div class="photo-li hover-photo-li"  id="all-photo-li-0">' + '<img src="' + Photos[0].Path + '" class="preview-photo-li"/>' +
-        truncatePhoto(Photos[0].Nom + "." + Photos[0].Extension) +
+        truncatePhoto(Photos[0].Nom) +
         "</div>";
       for (let i = 1; i < 5; i++) {
         listePhotos +=
           '<div class="photo-li"  id="all-photo-li-' +
           i +
           '">' + '<img src="' + Photos[i].Path + '" class="preview-photo-li"/>' +
-          truncatePhoto(Photos[i + allPhotoPage].Nom + "." + Photos[i + allPhotoPage].Extension) +
+          truncatePhoto(Photos[i + allPhotoPage].Nom) +
           "</div>";
       }
       document.querySelector(".all-photos").innerHTML = listePhotos;
@@ -814,7 +814,7 @@ function Queue(sens) {
 }
 
 function setPhotoInfos(n) {
-  document.querySelector(".titre-photo").innerHTML = Photos[n].Nom;
+  document.querySelector(".titre-photo").innerHTML = Photos[n].Nom + "." + Photos[n].Extension;
   document.querySelector(".current-photo").src = Photos[n].Path;
   if (document.querySelector(".titre-photo").innerHTML.length > 15) {
     document.querySelector(".titre-photo").style.animation =

@@ -55,22 +55,12 @@
     "Path": "photos/quebec.jpg"
   },
   {
-    "Nom": "bizzzzzzz",
-    "Extension": "jpg",
-    "Path": "photos/biz.jpg"
-  },
-  {
     "Nom": "how fish is made",
     "Extension": "jpg",
     "Path": "photos/fish.jpg"
   },
   {
-    "Nom": "Akaura",
-    "Extension": "jpg",
-    "Path": "photos/akaura.jpg"
-  },
-  {
-    "Nom": "l'Amour au Pouvoir !",
+    "Nom": "AmourAuPouvoir",
     "Extension": "png",
     "Path": "photos/amour.jpg"
   }
